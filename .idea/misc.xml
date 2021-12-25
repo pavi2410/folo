@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/GitHub/pavi2410/Folo/app/src/main/res/drawable-v21/app_widget_background.xml" value="0.2388888888888889" />
+        <entry key="..\:/GitHub/pavi2410/Folo/app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.2388888888888889" />
+        <entry key="..\:/GitHub/pavi2410/Folo/app/src/main/res/layout/folo_widget_preview.xml" value="0.8" />
+        <entry key="..\:/GitHub/pavi2410/Folo/app/src/main/res/layout/twitter_follow_widget.xml" value="0.36666666666666664" />
+        <entry key="..\:/GitHub/pavi2410/Folo/app/src/main/res/layout/twitter_follow_widget_configure.xml" value="0.585427135678392" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
