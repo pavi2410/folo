@@ -8,6 +8,7 @@ import androidx.compose.material.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -16,7 +17,6 @@ import compose.icons.feathericons.Eye
 import compose.icons.feathericons.PieChart
 import compose.icons.feathericons.Settings
 import compose.icons.feathericons.Trash
-import me.pavi2410.folo.coloredShadow
 
 @Composable
 fun FoloCard(
@@ -28,7 +28,11 @@ fun FoloCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .coloredShadow(colors.last())
+            .shadow(
+                    elevation = 16.dp,
+                    ambientColor = colors.last(),
+                    spotColor = colors.last()
+            )
             .background(
                 Brush.verticalGradient(colors),
                 RoundedCornerShape(16.dp)

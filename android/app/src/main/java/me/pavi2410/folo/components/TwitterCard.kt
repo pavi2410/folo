@@ -16,51 +16,52 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import compose.icons.FeatherIcons
 import compose.icons.feathericons.Twitter
+import me.pavi2410.folo.models.FoloProfile
 
 @Composable
-fun TwitterCard(data: Map<String, String>) {
+fun TwitterCard(data: FoloProfile) {
     val uriHandler = LocalUriHandler.current
 
     val colors = listOf(Color(0xff3B82F6), Color(0xff2563EB))
     FoloCard(colors, onViewClick = {
-        uriHandler.openUri("https://twitter.com/${data["username"]}")
+        uriHandler.openUri("https://twitter.com/${data.username}")
     }) {
         Row {
             Icon(
-                imageVector = FeatherIcons.Twitter,
-                contentDescription = null,
-                tint = Color.White,
-                modifier = Modifier.padding(4.dp)
+                    imageVector = FeatherIcons.Twitter,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier.padding(4.dp)
             )
             Spacer(Modifier.padding(2.dp))
             Column {
                 Text(
-                    data["display_name"] ?: "display_name",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
+                        data.displayName,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
                 )
                 Text(
-                    data["username"] ?: "username",
-                    color = Color.White
+                        data.username,
+                        color = Color.White
                 )
             }
         }
         Row {
             Text(
-                data["followers"] ?: "followers",
-                fontSize = 32.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White,
-                modifier = Modifier.alignByBaseline()
+                    data.followers.toString(),
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    modifier = Modifier.alignByBaseline()
             )
             Spacer(Modifier.padding(2.dp))
             Text(
-                "followers",
-                color = Color.White,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 1,
-                modifier = Modifier.alignByBaseline()
+                    "followers",
+                    color = Color.White,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1,
+                    modifier = Modifier.alignByBaseline()
             )
         }
     }

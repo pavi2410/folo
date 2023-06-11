@@ -86,6 +86,21 @@ dependencies {
 
     implementation("androidx.activity:activity-compose:1.7.2")
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
+
+    implementation("androidx.navigation:navigation-compose:2.6.0")
+
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
+
+    // For Glance support
+    implementation("androidx.glance:glance:1.0.0-beta01")
+
+    // For AppWidgets support
+    implementation("androidx.glance:glance-appwidget:1.0.0-beta01")
+
+    implementation("io.ktor:ktor-client-core:2.3.1")
+    implementation("io.ktor:ktor-client-cio:2.3.1")
+
+    implementation("br.com.devsrsouza.compose.icons:feather:1.1.0")
 }
 
 fun loadProps(filename: String) = Properties().apply {

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.pavi2410.folo">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,20 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">
-        <receiver
-            android:name=".TwitterFollowWidget"
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/twitter_follow_widget_info" />
-        </receiver>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <receiver
-            android:name=".FoloWidgetReceiver"
+            android:name=".widgets.FoloWidgetReceiver"
             android:enabled="@bool/glance_appwidget_available"
             android:exported="false">
             <intent-filter>
@@ -33,24 +30,14 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/folo_widget_info" />
+                android:resource="@xml/folo_widget_glance" />
         </receiver>
 
         <activity
-            android:name=".FoloWidgetConfigureActivity"
+            android:name=".widgets.FoloWidgetConfigureActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

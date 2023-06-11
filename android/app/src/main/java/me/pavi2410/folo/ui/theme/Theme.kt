@@ -2,29 +2,33 @@ package me.pavi2410.folo.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorPalette = darkColors(
-    primary = TailwindColors.purple400,
-    primaryVariant = TailwindColors.purple700,
-    secondary = TailwindColors.teal400
+        primary = TailwindColors.purple400,
+        primaryVariant = TailwindColors.purple700,
+        secondary = TailwindColors.teal400
 )
 
 private val LightColorPalette = lightColors(
-    primary = TailwindColors.purple500,
-    primaryVariant = TailwindColors.purple700,
-    secondary = TailwindColors.yellow400
+        primary = TailwindColors.purple500,
+        primaryVariant = TailwindColors.purple700,
+        secondary = TailwindColors.yellow400
 
-    /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
+        /* Other default colors to override
+        background = Color.White,
+        surface = Color.White,
+        onPrimary = Color.White,
+        onSecondary = Color.Black,
+        onBackground = Color.Black,
+        onSurface = Color.Black,
+        */
 )
 
 @Composable
@@ -36,9 +40,21 @@ fun FoloTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable()
     }
 
     MaterialTheme(
-        colors = colors,
-        typography = Typography,
-        shapes = Shapes,
-        content = content
-    )
+            colors = colors,
+            typography = typography,
+            shapes = shapes
+    ) {
+        val systemUiController = rememberSystemUiController()
+
+        SideEffect {
+            systemUiController.setSystemBarsColor(
+                    color = Color.Transparent,
+                    darkIcons = !darkTheme
+            )
+        }
+
+//        Surface(color = MaterialTheme.colors.background) {
+            content()
+//        }
+    }
 }

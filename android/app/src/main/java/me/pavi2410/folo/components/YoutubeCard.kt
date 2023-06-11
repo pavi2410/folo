@@ -16,51 +16,52 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import compose.icons.FeatherIcons
 import compose.icons.feathericons.Youtube
+import me.pavi2410.folo.models.FoloProfile
 
 @Composable
-fun YoutubeCard(data: Map<String, String>) {
+fun YoutubeCard(data: FoloProfile) {
     val uriHandler = LocalUriHandler.current
 
     val colors = listOf(Color(0xffEF4444), Color(0xffDC2626))
     FoloCard(colors, onViewClick = {
-        uriHandler.openUri("https://youtube.com/c/${data["username"]}")
+        uriHandler.openUri("https://youtube.com/c/${data.username}")
     }) {
         Row {
             Icon(
-                imageVector = FeatherIcons.Youtube,
-                contentDescription = null,
-                tint = Color.White,
-                modifier = Modifier.padding(4.dp)
+                    imageVector = FeatherIcons.Youtube,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier.padding(4.dp)
             )
             Spacer(Modifier.padding(2.dp))
             Column {
                 Text(
-                    data["display_name"] ?: "display_name",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
+                        data.displayName,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
                 )
                 Text(
-                    data["username"] ?: "username",
-                    color = Color.White
+                        data.username,
+                        color = Color.White
                 )
             }
         }
         Row {
             Text(
-                data["followers"] ?: "followers",
-                fontSize = 32.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White,
-                modifier = Modifier.alignByBaseline()
+                    data.followers.toString(),
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    modifier = Modifier.alignByBaseline()
             )
             Spacer(Modifier.padding(2.dp))
             Text(
-                "subscribers",
-                color = Color.White,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 1,
-                modifier = Modifier.alignByBaseline()
+                    "subscribers",
+                    color = Color.White,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1,
+                    modifier = Modifier.alignByBaseline()
             )
         }
     }

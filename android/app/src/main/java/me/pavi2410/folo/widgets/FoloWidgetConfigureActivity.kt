@@ -1,4 +1,4 @@
-package me.pavi2410.folo
+package me.pavi2410.folo.widgets
 
 import android.appwidget.AppWidgetManager
 import android.content.Intent
@@ -6,13 +6,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import com.google.accompanist.insets.ProvideWindowInsets
-import com.google.accompanist.insets.systemBarsPadding
-import me.pavi2410.folo.TwitterFollowWidget.Companion.updateAppWidget
 import me.pavi2410.folo.components.PlatformSelection
 import me.pavi2410.folo.ui.theme.FoloTheme
 
@@ -34,7 +32,7 @@ class FoloWidgetConfigureActivity : ComponentActivity() {
         val extras = intent.extras
         if (extras != null) {
             appWidgetId = extras.getInt(
-                AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID
+                    AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID
             )
         }
 
@@ -46,46 +44,36 @@ class FoloWidgetConfigureActivity : ComponentActivity() {
 
         setContent {
             FoloTheme {
-                ProvideWindowInsets {
-                    Scaffold(
+                Scaffold(
                         modifier = Modifier.systemBarsPadding(),
                         topBar = {
                             TopAppBar {
                                 Text("Configure Widget")
                             }
-                        }) {
-                        Column {
-                            val context = LocalContext.current
+                        }) { _ ->
+                    Column {
+                        val context = LocalContext.current
 
-                            var platform by remember { mutableStateOf("") }
-                            var username by remember { mutableStateOf("") }
+                        var platform by remember { mutableStateOf("") }
+                        var username by remember { mutableStateOf("") }
 
-                            PlatformSelection(listOf("twitter", "instagram", "reddit")) { selection -> platform = selection }
+                        PlatformSelection(listOf("twitter", "instagram", "reddit")) { selection -> platform = selection }
 
-                            OutlinedTextField(placeholder = {
-                                Text("Username")
-                            }, value = username, onValueChange = { username = it })
+                        OutlinedTextField(placeholder = {
+                            Text("Username")
+                        }, value = username, onValueChange = { username = it })
 
-                            Button(onClick = {
-                                // When the button is clicked, store the string locally
-                                val widgetText = "$platform:$username"
-                                saveTitlePref(context, appWidgetId, widgetText)
-
-                                // It is the responsibility of the configuration activity to update the app widget
-                                val appWidgetManager = AppWidgetManager.getInstance(context)
-                                updateAppWidget(context, appWidgetManager, appWidgetId)
-
-                                // Make sure we pass back the original appWidgetId
-                                val resultValue = Intent()
-                                resultValue.putExtra(
+                        Button(onClick = {
+                            // Make sure we pass back the original appWidgetId
+                            val resultValue = Intent()
+                            resultValue.putExtra(
                                     AppWidgetManager.EXTRA_APPWIDGET_ID,
                                     appWidgetId
-                                )
-                                setResult(RESULT_OK, resultValue)
-                                finish()
-                            }) {
-                                Text("Add Widget")
-                            }
+                            )
+                            setResult(RESULT_OK, resultValue)
+                            finish()
+                        }) {
+                            Text("Add Widget")
                         }
                     }
                 }
