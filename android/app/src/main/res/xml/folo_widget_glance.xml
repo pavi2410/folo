@@ -6,11 +6,10 @@
     android:initialLayout="@layout/folo_widget_loading"
     android:initialKeyguardLayout="@layout/folo_widget_loading"
     android:previewImage="@drawable/example_appwidget_preview"
-    android:previewLayout="@layout/folo_widget_preview"
     android:resizeMode="horizontal|vertical"
     android:targetCellWidth="3"
     android:targetCellHeight="2"
     android:widgetCategory="home_screen"
-    android:updatePeriodMillis="4800000"
+    android:updatePeriodMillis="3600000"
     android:widgetFeatures="reconfigurable"
     android:configure="me.pavi2410.folo.widgets.FoloWidgetConfigureActivity"/>
