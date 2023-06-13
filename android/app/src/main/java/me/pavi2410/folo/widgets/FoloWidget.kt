@@ -15,7 +15,6 @@ import androidx.glance.appwidget.provideContent
 import androidx.glance.background
 import androidx.glance.currentState
 import androidx.glance.layout.Column
-import androidx.glance.layout.ColumnScope
 import androidx.glance.layout.Row
 import androidx.glance.layout.Spacer
 import androidx.glance.layout.fillMaxWidth
@@ -47,7 +46,11 @@ class FoloWidget : GlanceAppWidget() {
                         }
                     }
 
-                    is FoloWidgetInfo.Unavailable -> TODO()
+                    is FoloWidgetInfo.Unavailable -> {
+                        Column(GlanceModifier.appWidgetBackground()) {
+                            Text(text = foloWidgetInfo.message)
+                        }
+                    }
                 }
             }
         }
