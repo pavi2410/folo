@@ -3,6 +3,7 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("plugin.serialization") version "1.8.21"
 }
 
 val keystoreProps by lazy { loadProps("D:/App Inventor/keystore.properties") }
@@ -93,12 +94,12 @@ dependencies {
 
     // For Glance support
     implementation("androidx.glance:glance:1.0.0-beta01")
-
-    // For AppWidgets support
     implementation("androidx.glance:glance-appwidget:1.0.0-beta01")
 
     implementation("io.ktor:ktor-client-core:2.3.1")
     implementation("io.ktor:ktor-client-cio:2.3.1")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
     implementation("br.com.devsrsouza.compose.icons:feather:1.1.0")
 }
