@@ -10,6 +10,7 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
+import me.pavi2410.folo.FoloRepo
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.toJavaDuration
 

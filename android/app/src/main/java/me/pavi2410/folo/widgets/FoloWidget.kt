@@ -23,6 +23,7 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
+import me.pavi2410.folo.compactDecimalFormat
 import me.pavi2410.folo.models.FoloProfile
 
 class FoloWidget : GlanceAppWidget() {
@@ -60,41 +61,38 @@ class FoloWidget : GlanceAppWidget() {
 @Composable
 fun FoloCardWidget(data: FoloProfile) {
     val colors = listOf(Color(0xff3B82F6), Color(0xff2563EB))
+    val followersCount = compactDecimalFormat(data.followers)
+
     Column(
-            modifier = GlanceModifier
-                    .appWidgetBackground()
-                    .fillMaxWidth()
-                    .padding(16.dp)
-                    .background(colors.last())
+        modifier = GlanceModifier
+            .appWidgetBackground()
+            .fillMaxWidth()
+            .padding(16.dp)
+            .background(colors.last())
     ) {
         Column {
             Text(
-                    data.displayName,
-                    style = TextStyle(
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = ColorProvider(Color.White)
-                    )
-            )
-            Text(
-                    data.username,
-                    style = TextStyle(color = ColorProvider(Color.White))
+                data.username,
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    color = ColorProvider(Color.White)
+                )
             )
         }
         Row {
             Text(
-                    data.followers.toString(),
-                    style = TextStyle(
-                            fontSize = 32.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = ColorProvider(Color.White)
-                    )
+                followersCount,
+                style = TextStyle(
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = ColorProvider(Color.White)
+                )
             )
             Spacer(GlanceModifier.padding(2.dp))
             Text(
-                    "followers",
-                    style = TextStyle(color = ColorProvider(Color.White)),
-                    maxLines = 1,
+                "followers",
+                style = TextStyle(color = ColorProvider(Color.White)),
+                maxLines = 1,
             )
         }
     }

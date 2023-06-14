@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.state.updateAppWidgetState
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import me.pavi2410.folo.FoloRepo
 import me.pavi2410.folo.components.PlatformSelection
 import me.pavi2410.folo.ui.theme.FoloTheme
 

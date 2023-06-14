@@ -53,8 +53,8 @@ fun FoloTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable()
             )
         }
 
-//        Surface(color = MaterialTheme.colors.background) {
+        Surface(color = MaterialTheme.colors.background) {
             content()
-//        }
+        }
     }
 }
