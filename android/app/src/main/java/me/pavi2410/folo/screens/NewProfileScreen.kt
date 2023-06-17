@@ -10,6 +10,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import compose.icons.FeatherIcons
+import compose.icons.feathericons.Check
 import me.pavi2410.folo.components.PlatformSelection
 import me.pavi2410.folo.models.FoloPlatform
 
@@ -25,6 +27,19 @@ fun NewProfileScreen() {
                 style = MaterialTheme.typography.h4,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+            )
+        },
+        floatingActionButtonPosition = FabPosition.Center,
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                modifier = Modifier.navigationBarsPadding(),
+                icon = {
+                    Icon(FeatherIcons.Check, contentDescription = null)
+                },
+                text = { Text("Done") },
+                onClick = {
+                    // do something
+                }
             )
         }
     ) { _ ->
@@ -43,18 +58,6 @@ fun NewProfileScreen() {
                 value = username,
                 onValueChange = { username = it }
             )
-
-            Row(
-                horizontalArrangement = Arrangement.End,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                TextButton(onClick = { /*TODO*/ }) {
-                    Text("CANCEL")
-                }
-                Button(onClick = { /*TODO*/ }) {
-                    Text("DONE")
-                }
-            }
         }
     }
 }
