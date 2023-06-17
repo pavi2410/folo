@@ -13,15 +13,19 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import me.pavi2410.folo.FoloRepo
 import me.pavi2410.folo.components.FoloCard
-import me.pavi2410.folo.testData
+import org.koin.compose.koinInject
 
 @Composable
-fun MainScreen(navController: NavController) {
+fun MainScreen(navController: NavController, foloRepo: FoloRepo = koinInject()) {
+    val profiles = remember { foloRepo.getAllProfiles() }
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -49,7 +53,7 @@ fun MainScreen(navController: NavController) {
         }
     ) { innerPadding ->
         LazyColumn(contentPadding = innerPadding) {
-            items(testData + testData + testData) { data ->
+            items(profiles) { data ->
                 FoloCard(data)
             }
         }

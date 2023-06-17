@@ -1,33 +1,33 @@
 package me.pavi2410.folo
 
-import kotlinx.coroutines.delay
 import me.pavi2410.folo.models.FoloPlatform
 import me.pavi2410.folo.models.FoloProfile
 import me.pavi2410.folo.widgets.FoloWidgetInfo
 
+class FoloRepo(private val database: FoloDatabase) {
+    fun getAllProfiles() =
+        database.foloProfileQueries.selectAll().executeAsList().map {
+            FoloProfile(
+                it.platform,
+                it.username,
+                it.followers
+            )
+        }
 
-val testData = listOf(
-    FoloProfile(
-        platform = FoloPlatform.Twitter,
-        username = "PavitraGolchha",
-        followers = 296
-    ),
-    FoloProfile(
-        platform = FoloPlatform.Youtube,
-        username = "PavitraGolchha",
-        followers = 1_000_000_000
-    )
-)
+    fun addProfile(platform: FoloPlatform, username: String, followers: Long) {
+        database.foloProfileQueries.insertProfile(platform, username, followers)
+    }
 
-object FoloRepo {
-    suspend fun fetchData(username: String): FoloWidgetInfo {
-//        val client = HttpClient(CIO)
-//        val response = client.get("https://ktor.io/")
-//        return response.body<FoloWidgetInfo.Available>()
+    fun fetchWidgetInfo(): FoloWidgetInfo {
+        val profile = database.foloProfileQueries.selectAll().executeAsList().firstOrNull()
+            ?: return FoloWidgetInfo.Unavailable("Profile not available")
 
-        delay(100)
-
-        return FoloWidgetInfo.Available(testData.first())
+        return FoloWidgetInfo.Available(
+            FoloProfile(
+                profile.platform,
+                profile.username,
+                profile.followers
+            )
+        )
     }
 }
-

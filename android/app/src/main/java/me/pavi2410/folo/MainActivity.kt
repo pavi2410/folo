@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                         DetailScreen()
                     }
                     composable("new_profile") {
-                        NewProfileScreen()
+                        NewProfileScreen(navController)
                     }
                 }
             }

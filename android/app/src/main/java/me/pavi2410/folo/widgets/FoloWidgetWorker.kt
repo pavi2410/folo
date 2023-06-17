@@ -15,10 +15,10 @@ import kotlin.time.Duration.Companion.minutes
 import kotlin.time.toJavaDuration
 
 class FoloWidgetWorker(
+        private val foloRepo: FoloRepo,
         private val context: Context,
         workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
-
     override suspend fun doWork(): Result {
         val manager = GlanceAppWidgetManager(context)
         val glanceIds = manager.getGlanceIds(FoloWidget::class.java)
@@ -26,7 +26,7 @@ class FoloWidgetWorker(
             // Update state to indicate loading
             setWidgetState(glanceIds, FoloWidgetInfo.Loading)
             // Update state with new data
-            setWidgetState(glanceIds, FoloRepo.fetchData("lol"))
+            setWidgetState(glanceIds, foloRepo.fetchWidgetInfo())
 
             Result.success()
         } catch (e: Exception) {
