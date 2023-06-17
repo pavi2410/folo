@@ -17,6 +17,7 @@ import androidx.glance.appwidget.state.updateAppWidgetState
 import kotlinx.coroutines.launch
 import me.pavi2410.folo.FoloRepo
 import me.pavi2410.folo.components.PlatformSelection
+import me.pavi2410.folo.models.FoloPlatform
 import me.pavi2410.folo.ui.theme.FoloTheme
 
 /**
@@ -53,16 +54,10 @@ class FoloWidgetConfigureActivity : ComponentActivity() {
                     Column(Modifier.padding(paddingValues)) {
                         val context = LocalContext.current
                         val coroutineScope = rememberCoroutineScope()
-                        var platform by remember { mutableStateOf("") }
+                        var platform by remember { mutableStateOf(FoloPlatform.Twitter) }
                         var username by remember { mutableStateOf("") }
 
-                        PlatformSelection(
-                            listOf(
-                                "twitter",
-                                "instagram",
-                                "reddit"
-                            )
-                        ) { selection -> platform = selection }
+                        PlatformSelection { selection -> platform = selection }
 
                         OutlinedTextField(placeholder = {
                             Text("Username")
@@ -84,7 +79,10 @@ class FoloWidgetConfigureActivity : ComponentActivity() {
                                 FoloWidget().update(context, glanceId)
 
                                 val resultValue =
-                                    Intent().putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+                                    Intent().putExtra(
+                                        AppWidgetManager.EXTRA_APPWIDGET_ID,
+                                        appWidgetId
+                                    )
                                 setResult(RESULT_OK, resultValue)
                                 finish()
                             }

@@ -1,9 +1,12 @@
 package me.pavi2410.folo.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,18 +29,17 @@ fun NewProfileScreen() {
         }
     ) { _ ->
         Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(24.dp),
             modifier = Modifier.padding(16.dp)
         ) {
             var platform by remember { mutableStateOf(FoloPlatform.Twitter) }
             var username by remember { mutableStateOf("") }
 
-            PlatformSelection(
-                options = listOf("Twitter", "Youtube"),
-                onSelect = { selection -> platform = FoloPlatform.valueOf(selection) }
-            )
+            PlatformSelection { selection -> platform = selection }
 
-            OutlinedTextField(placeholder = { Text("Username") },
+            OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
+                label = { Text("Username") },
                 value = username,
                 onValueChange = { username = it }
             )

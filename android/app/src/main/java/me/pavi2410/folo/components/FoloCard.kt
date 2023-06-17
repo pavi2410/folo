@@ -40,7 +40,7 @@ import me.pavi2410.folo.models.FoloProfile
 @Composable
 fun FoloCard(data: FoloProfile) {
     val uriHandler = LocalUriHandler.current
-    val platformIcon = remember { platformIcon(data) }
+    val platformIcon = remember { platformIcon(data.platform) }
     val colors = remember { backgroundGradient(data) }
     val followersText = remember { followersText(data) }
     val followersCount = remember { compactDecimalFormat(data.followers) }
@@ -155,7 +155,7 @@ fun followersText(data: FoloProfile) = when (data.platform) {
     FoloPlatform.Youtube -> "subscribers"
 }
 
-fun platformIcon(data: FoloProfile) = when (data.platform) {
+fun platformIcon(data: FoloPlatform) = when (data) {
     FoloPlatform.Twitter -> FeatherIcons.Twitter
     FoloPlatform.Youtube -> FeatherIcons.Youtube
 }
