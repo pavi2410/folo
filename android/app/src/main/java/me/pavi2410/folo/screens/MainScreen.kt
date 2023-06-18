@@ -13,8 +13,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -24,14 +27,12 @@ import org.koin.compose.koinInject
 
 @Composable
 fun MainScreen(navController: NavController, foloRepo: FoloRepo = koinInject()) {
-    val profiles = remember { foloRepo.getAllProfiles() }
+    val profiles by remember { foloRepo.getAllProfiles() }.collectAsState(initial = emptyList())
 
     Scaffold(
-        modifier = Modifier
-            .fillMaxSize()
-            .statusBarsPadding(),
+        modifier = Modifier.fillMaxSize(),
         topBar = {
-            Row {
+            Row(Modifier.statusBarsPadding()) {
                 Text(
                     text = "Folo",
                     style = MaterialTheme.typography.h3,
@@ -54,7 +55,9 @@ fun MainScreen(navController: NavController, foloRepo: FoloRepo = koinInject()) 
     ) { innerPadding ->
         LazyColumn(contentPadding = innerPadding) {
             items(profiles) { data ->
-                FoloCard(data)
+                FoloCard(data, onDelete = {
+                    foloRepo.deleteProfile(data.id)
+                })
             }
         }
     }

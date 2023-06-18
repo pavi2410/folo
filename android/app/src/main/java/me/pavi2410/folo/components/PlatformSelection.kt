@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import me.pavi2410.folo.models.FoloPlatform
+import me.pavi2410.folo.ui.platformIcon
 
 @Composable
 fun PlatformSelection(onSelect: (FoloPlatform) -> Unit) {

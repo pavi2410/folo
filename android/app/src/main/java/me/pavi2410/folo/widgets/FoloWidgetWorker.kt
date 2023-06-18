@@ -11,6 +11,7 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import me.pavi2410.folo.FoloRepo
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.toJavaDuration
 
@@ -24,13 +25,20 @@ class FoloWidgetWorker(
         val glanceIds = manager.getGlanceIds(FoloWidget::class.java)
         return try {
             // Update state to indicate loading
-            setWidgetState(glanceIds, FoloWidgetInfo.Loading)
+            setWidgetState(glanceIds) {
+                FoloWidgetInfo.Loading
+            }
             // Update state with new data
-            setWidgetState(glanceIds, foloRepo.fetchWidgetInfo())
+            setWidgetState(glanceIds) { glanceId ->
+                val appWidgetId = manager.getAppWidgetId(glanceId)
+                foloRepo.fetchWidgetInfo(appWidgetId)
+            }
 
             Result.success()
         } catch (e: Exception) {
-            setWidgetState(glanceIds, FoloWidgetInfo.Unavailable(e.message.orEmpty()))
+            setWidgetState(glanceIds) {
+                FoloWidgetInfo.Unavailable(e.message.orEmpty())
+            }
             if (runAttemptCount < 10) {
                 // Exponential backoff strategy will avoid the request to repeat
                 // too fast in case of failures.
@@ -44,13 +52,13 @@ class FoloWidgetWorker(
     /**
      * Update the state of all widgets and then force update UI
      */
-    private suspend fun setWidgetState(glanceIds: List<GlanceId>, newState: FoloWidgetInfo) {
+    private suspend fun setWidgetState(glanceIds: List<GlanceId>, newState: (GlanceId) -> FoloWidgetInfo) {
         glanceIds.forEach { glanceId ->
             updateAppWidgetState(
                     context = context,
                     definition = FoloWidgetStateDef,
                     glanceId = glanceId,
-                    updateState = { newState }
+                    updateState = { newState(glanceId) }
             )
         }
         FoloWidget().updateAll(context)
@@ -70,7 +78,7 @@ class FoloWidgetWorker(
         fun enqueue(context: Context, force: Boolean = false) {
             val manager = WorkManager.getInstance(context)
             val requestBuilder = PeriodicWorkRequestBuilder<FoloWidgetWorker>(
-                    30.minutes.toJavaDuration()
+                    1.hours.toJavaDuration()
             )
             var workPolicy = ExistingPeriodicWorkPolicy.KEEP
 

@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -31,14 +30,15 @@ import compose.icons.feathericons.Eye
 import compose.icons.feathericons.PieChart
 import compose.icons.feathericons.Settings
 import compose.icons.feathericons.Trash
-import compose.icons.feathericons.Twitter
-import compose.icons.feathericons.Youtube
 import me.pavi2410.folo.compactDecimalFormat
-import me.pavi2410.folo.models.FoloPlatform
 import me.pavi2410.folo.models.FoloProfile
+import me.pavi2410.folo.ui.backgroundGradient
+import me.pavi2410.folo.ui.followersText
+import me.pavi2410.folo.ui.platformIcon
+import me.pavi2410.folo.ui.profileLink
 
 @Composable
-fun FoloCard(data: FoloProfile) {
+fun FoloCard(data: FoloProfile, onDelete: () -> Unit) {
     val uriHandler = LocalUriHandler.current
     val platformIcon = remember { platformIcon(data.platform) }
     val colors = remember { backgroundGradient(data) }
@@ -101,7 +101,9 @@ fun FoloCard(data: FoloProfile) {
                 horizontalArrangement = Arrangement.End,
                 modifier = Modifier.fillMaxSize()
             ) {
-                IconButton(onClick = {}) {
+                IconButton(onClick = {
+                    uriHandler.openUri(profileLink(data))
+                }) {
                     Icon(
                         imageVector = FeatherIcons.Eye,
                         contentDescription = null,
@@ -128,7 +130,7 @@ fun FoloCard(data: FoloProfile) {
                         tint = Color.White
                     )
                 }
-                IconButton(onClick = {}) {
+                IconButton(onClick = onDelete) {
                     Icon(
                         imageVector = FeatherIcons.Trash,
                         contentDescription = null,
@@ -138,24 +140,4 @@ fun FoloCard(data: FoloProfile) {
             }
         }
     }
-}
-
-fun profileLink(data: FoloProfile) = when (data.platform) {
-    FoloPlatform.Twitter -> "https://twitter.com/${data.username}"
-    FoloPlatform.Youtube -> "https://youtube.com/c/${data.username}"
-}
-
-fun backgroundGradient(data: FoloProfile) = when (data.platform) {
-    FoloPlatform.Twitter -> listOf(Color(0xff3B82F6), Color(0xff2563EB))
-    FoloPlatform.Youtube -> listOf(Color(0xffEF4444), Color(0xffDC2626))
-}
-
-fun followersText(data: FoloProfile) = when (data.platform) {
-    FoloPlatform.Twitter -> "followers"
-    FoloPlatform.Youtube -> "subscribers"
-}
-
-fun platformIcon(data: FoloPlatform) = when (data) {
-    FoloPlatform.Twitter -> FeatherIcons.Twitter
-    FoloPlatform.Youtube -> FeatherIcons.Youtube
 }

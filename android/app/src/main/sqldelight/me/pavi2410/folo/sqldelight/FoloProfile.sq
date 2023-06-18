@@ -29,3 +29,7 @@ updateFollowersCount:
 UPDATE FoloProfile
 SET followers = ?
 WHERE platform = ? AND username = ?;
+
+deleteProfile:
+DELETE FROM FoloProfile
+WHERE id = ?;

@@ -1,6 +1,7 @@
 package me.pavi2410.folo
 
 import android.content.Context
+import androidx.sqlite.db.SupportSQLiteDatabase
 import app.cash.sqldelight.EnumColumnAdapter
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import me.pavi2410.folo.sqldelight.FoloProfile
@@ -16,7 +17,16 @@ val appModule = module {
 }
 
 private fun createDatabase(context: Context): FoloDatabase {
-    val driver = AndroidSqliteDriver(FoloDatabase.Schema, context, "folo.db")
+    val driver = AndroidSqliteDriver(
+        schema = FoloDatabase.Schema,
+        context = context,
+        name = "folo.db",
+        callback = object : AndroidSqliteDriver.Callback(FoloDatabase.Schema) {
+            override fun onOpen(db: SupportSQLiteDatabase) {
+                db.setForeignKeyConstraintsEnabled(true)
+            }
+        }
+    )
     return FoloDatabase(
         driver,
         FoloProfile.Adapter(

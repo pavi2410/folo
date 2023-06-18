@@ -116,6 +116,7 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-workmanager:3.4.2")
 
     implementation("app.cash.sqldelight:android-driver:2.0.0-rc01")
+    implementation("app.cash.sqldelight:coroutines-extensions:2.0.0-rc01")
 }
 
 fun loadProps(filename: String) = Properties().apply {

@@ -32,12 +32,15 @@ class FoloWidgetConfigureActivity : ComponentActivity() {
 
         setContent {
             FoloTheme {
-                WidgetConfigureScreen(appWidgetId, onConfigure = {
-                    val resultValue = Intent()
-                        .putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-                    setResult(RESULT_OK, resultValue)
-                    finish()
-                })
+                WidgetConfigureScreen(
+                    appWidgetId,
+                    onConfigure = {
+                        val resultValue = Intent()
+                            .putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+                        setResult(RESULT_OK, resultValue)
+                        finish()
+                    }
+                )
             }
         }
     }
