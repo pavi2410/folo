@@ -17,7 +17,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -55,9 +54,15 @@ fun MainScreen(navController: NavController, foloRepo: FoloRepo = koinInject()) 
     ) { innerPadding ->
         LazyColumn(contentPadding = innerPadding) {
             items(profiles) { data ->
-                FoloCard(data, onDelete = {
-                    foloRepo.deleteProfile(data.id)
-                })
+                FoloCard(
+                    data,
+                    onDetail = {
+                        navController.navigate("stats/${data.id}")
+                    },
+                    onDelete = {
+                        foloRepo.deleteProfile(data.id)
+                    }
+                )
             }
         }
     }

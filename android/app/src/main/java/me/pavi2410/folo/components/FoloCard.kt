@@ -39,7 +39,11 @@ import me.pavi2410.folo.ui.platformIcon
 import me.pavi2410.folo.ui.profileLink
 
 @Composable
-fun FoloCard(data: FoloProfile, onDelete: () -> Unit) {
+fun FoloCard(
+    data: FoloProfile,
+    onDetail: () -> Unit,
+    onDelete: () -> Unit
+) {
     val uriHandler = LocalUriHandler.current
     val platformIcon = remember { platformIcon(data.platform) }
     val colors = remember { backgroundGradient(data.platform) }
@@ -112,7 +116,7 @@ fun FoloCard(data: FoloProfile, onDelete: () -> Unit) {
                         tint = Color.White
                     )
                 }
-                IconButton(onClick = {}) {
+                IconButton(onClick = onDetail) {
                     Icon(
                         imageVector = FeatherIcons.PieChart,
                         contentDescription = null,

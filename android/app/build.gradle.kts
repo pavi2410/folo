@@ -117,6 +117,8 @@ dependencies {
 
     implementation("app.cash.sqldelight:android-driver:2.0.0-rc01")
     implementation("app.cash.sqldelight:coroutines-extensions:2.0.0-rc01")
+
+    implementation("com.himanshoe:charty:1.0.1")
 }
 
 fun loadProps(filename: String) = Properties().apply {

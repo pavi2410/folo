@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import me.pavi2410.folo.models.FoloPlatform
-import me.pavi2410.folo.models.FoloProfile
-import me.pavi2410.folo.screens.DetailScreen
+import androidx.navigation.navArgument
+import me.pavi2410.folo.screens.StatsScreen
 import me.pavi2410.folo.screens.MainScreen
 import me.pavi2410.folo.screens.NewProfileScreen
 import me.pavi2410.folo.ui.theme.FoloTheme
@@ -27,8 +27,12 @@ class MainActivity : ComponentActivity() {
                     composable("main") {
                         MainScreen(navController)
                     }
-                    composable("detail") {
-                        DetailScreen()
+                    composable(
+                        "stats/{id}",
+                        arguments = listOf(navArgument("id") { type = NavType.IntType })
+                    ) {
+                        val id = it.arguments?.getInt("id")
+                        StatsScreen(navController, id)
                     }
                     composable("new_profile") {
                         NewProfileScreen(navController)
