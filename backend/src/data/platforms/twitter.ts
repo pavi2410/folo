@@ -1,4 +1,8 @@
-export async function fetchTwitterProfile(username: string) {
+import type { ProfileResult } from ".";
+
+export async function fetchTwitterProfile(
+  username: string
+): Promise<ProfileResult | null> {
   const options = {
     method: "POST",
     headers: {
@@ -9,7 +13,9 @@ export async function fetchTwitterProfile(username: string) {
     },
   };
 
-  const url = new URL("https://api.twitter.com/graphql/4S2ihIKfF3xhp-ENxvUAfQ/UserByScreenName");
+  const url = new URL(
+    "https://api.twitter.com/graphql/4S2ihIKfF3xhp-ENxvUAfQ/UserByScreenName"
+  );
 
   url.searchParams.set(
     "variables",
@@ -23,8 +29,9 @@ export async function fetchTwitterProfile(username: string) {
   const json = await res.json();
 
   return {
-    platform: "Twitter",
+    platform: "twitter",
     username,
-    followers_count: json.data.user.legacy.followers_count
-  }
+    followers: json.data.user.legacy.followers_count,
+    updatedAt: Date.now(),
+  };
 }

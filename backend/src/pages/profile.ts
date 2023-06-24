@@ -2,6 +2,7 @@ import type { APIContext } from "astro";
 
 import { fetchTwitterProfile } from "../data/platforms/twitter.js";
 import { fetchYoutubeProfile } from "../data/platforms/youtube.js";
+import { platforms } from "../data/platforms/index.js";
 
 export async function get({ url }: APIContext) {
   const platform = url.searchParams.get("platform");
@@ -13,17 +14,13 @@ export async function get({ url }: APIContext) {
     });
   }
 
-  let profile;
-
-  if (platform === "Twitter") {
-    profile = await fetchTwitterProfile(username);
-  } else if (platform === "Youtube") {
-    profile = await fetchYoutubeProfile(username);
-  } else {
+  const platformFetcher = platforms.get(platform);
+  if (!platformFetcher) {
     return new Response("Invalid platform", {
       status: 400,
     });
   }
+  const profile = await platformFetcher(username);
 
   return new Response(JSON.stringify(profile), {
     status: 200,

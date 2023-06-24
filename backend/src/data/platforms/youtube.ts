@@ -1,4 +1,8 @@
-export async function fetchYoutubeProfile(username: string) {
+import type { ProfileResult } from ".";
+
+export async function fetchYoutubeProfile(
+  username: string
+): Promise<ProfileResult | null> {
   const res = await fetch(`https://youtube.com/@${username}`);
   const json = await res.text();
 
@@ -8,9 +12,10 @@ export async function fetchYoutubeProfile(username: string) {
       .at(-1) ?? "0";
 
   return {
-    platform: "Youtube",
+    platform: "youtube",
     username,
-    followers_count: compactStringToNumber(subscribers_count),
+    followers: compactStringToNumber(subscribers_count),
+    updatedAt: Date.now(),
   };
 }
 
@@ -29,7 +34,7 @@ function compactStringToNumber(compactString: string): number {
       T: 1e12,
     };
 
-    const multiplier = unit ? multipliers[unit.toUpperCase()] : 1;
+    const multiplier = unit ? multipliers[unit] : 1;
 
     return number * multiplier;
   }
