@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -41,14 +42,15 @@ import me.pavi2410.folo.ui.profileLink
 fun FoloCard(data: FoloProfile, onDelete: () -> Unit) {
     val uriHandler = LocalUriHandler.current
     val platformIcon = remember { platformIcon(data.platform) }
-    val colors = remember { backgroundGradient(data) }
-    val followersText = remember { followersText(data) }
+    val colors = remember { backgroundGradient(data.platform) }
+    val followersText = remember { followersText(data.platform) }
     val followersCount = remember { compactDecimalFormat(data.followers) }
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
+            .clip(RoundedCornerShape(16.dp))
             .shadow(
                 elevation = 16.dp,
                 ambientColor = colors.last(),
