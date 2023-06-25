@@ -30,6 +30,7 @@ import me.pavi2410.folo.FoloRepo
 import me.pavi2410.folo.components.FoloWidgetSelectionCard
 import me.pavi2410.folo.models.FoloProfile
 import me.pavi2410.folo.widgets.FoloWidget
+import me.pavi2410.folo.widgets.FoloWidgetInfo
 import me.pavi2410.folo.widgets.FoloWidgetStateDef
 import org.koin.compose.koinInject
 
@@ -55,7 +56,14 @@ fun WidgetConfigureScreen(
             glanceId = glanceId,
             definition = FoloWidgetStateDef
         ) {
-            foloRepo.fetchWidgetInfo(appWidgetId)
+            FoloWidgetInfo.Available(
+                FoloProfile(
+                    999,
+                    profile.platform,
+                    profile.username,
+                    profile.followers
+                )
+            )
         }
 
         FoloWidget().update(context, glanceId)
@@ -79,7 +87,7 @@ fun WidgetConfigureScreen(
             if (selected != null) {
                 ExtendedFloatingActionButton(
                     modifier = Modifier.navigationBarsPadding(),
-                    text = { Text("Track New Profile") },
+                    text = { Text("Add Widget") },
                     onClick = {
                         coroutineScope.launch {
                             updateWidget(selected!!)

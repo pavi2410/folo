@@ -8,6 +8,7 @@ import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
+import androidx.glance.ImageProvider
 import androidx.glance.appwidget.CircularProgressIndicator
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.appWidgetBackground
@@ -25,6 +26,7 @@ import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
 import me.pavi2410.folo.compactDecimalFormat
 import me.pavi2410.folo.models.FoloProfile
+import me.pavi2410.folo.ui.gradientDrawable
 
 class FoloWidget : GlanceAppWidget() {
 
@@ -65,10 +67,11 @@ fun FoloCardWidget(data: FoloProfile) {
 
     Column(
         modifier = GlanceModifier
-            .appWidgetBackground()
             .fillMaxWidth()
+//            .appWidgetBackground()
+//            .background(colors.last())
+            .background(ImageProvider(gradientDrawable(data.platform)))
             .padding(16.dp)
-            .background(colors.last())
     ) {
         Column {
             Text(

@@ -11,6 +11,7 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import me.pavi2410.folo.FoloRepo
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.toJavaDuration
@@ -78,7 +79,7 @@ class FoloWidgetWorker(
         fun enqueue(context: Context, force: Boolean = false) {
             val manager = WorkManager.getInstance(context)
             val requestBuilder = PeriodicWorkRequestBuilder<FoloWidgetWorker>(
-                    1.hours.toJavaDuration()
+                    1.days.toJavaDuration()
             )
             var workPolicy = ExistingPeriodicWorkPolicy.KEEP
 

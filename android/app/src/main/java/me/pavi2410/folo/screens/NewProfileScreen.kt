@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import compose.icons.FeatherIcons
 import compose.icons.feathericons.Check
+import kotlinx.coroutines.launch
 import me.pavi2410.folo.FoloRepo
 import me.pavi2410.folo.components.PlatformSelection
 import me.pavi2410.folo.models.FoloPlatform
@@ -36,6 +38,7 @@ import org.koin.compose.koinInject
 
 @Composable
 fun NewProfileScreen(navController: NavController, foloRepo: FoloRepo = koinInject()) {
+    val coroutineScope = rememberCoroutineScope()
     var platform by remember { mutableStateOf(FoloPlatform.Twitter) }
     var username by remember { mutableStateOf("") }
 
@@ -61,13 +64,10 @@ fun NewProfileScreen(navController: NavController, foloRepo: FoloRepo = koinInje
                 },
                 text = { Text("Done") },
                 onClick = {
-                    // todo:
-                    //  - make sure username is not empty
-                    //  - check if profile already exists
-                    //  - check if username exists in the platform
-                    //  - fetch followers count
-                    foloRepo.addProfile(platform, username, 0)
-                    navController.navigateUp()
+                    coroutineScope.launch {
+                        foloRepo.addProfile(platform, username)
+                        navController.navigateUp()
+                    }
                 }
             )
         }
