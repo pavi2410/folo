@@ -1,0 +1,52 @@
+---
+import IconTwitter from "~icons/tabler/brand-twitter";
+import IconInstagram from "~icons/tabler/brand-instagram";
+import IconTiktok from "~icons/tabler/brand-tiktok";
+import IconYoutube from "~icons/tabler/brand-youtube";
+import IconGithub from "~icons/tabler/brand-github";
+import IconSnapchat from "~icons/tabler/brand-snapchat";
+
+const platforms = {
+  twitter: {
+    icon: IconTwitter,
+    gradient: "from-blue-500 to-blue-600 shadow-blue-700",
+  },
+  instagram: {
+    icon: IconInstagram,
+    gradient: "from-pink-500 to-pink-600 shadow-pink-700",
+  },
+  tiktok: {
+    icon: IconTiktok,
+    gradient: "from-black to-gray-900 shadow-gray-900",
+  },
+  youtube: {
+    icon: IconYoutube,
+    gradient: "from-red-500 to-red-600 shadow-red-700",
+  },
+  github: {
+    icon: IconGithub,
+    gradient: "from-neutral-800 to-neutral-900 shadow-neutral-900",
+  },
+  snapchat: {
+    icon: IconSnapchat,
+    gradient: "from-yellow-300 to-yellow-400 shadow-yellow-900 !text-black",
+  },
+};
+
+const { platform, username, followers } = Astro.props;
+
+const { icon: Icon } = platforms[platform];
+---
+
+<div
+  class=`w-fit p-4 rounded-xl shadow-lg text-lg text-white bg-gradient-to-b ${platforms[platform].gradient}`
+>
+  <div class="flex items-start gap-2">
+    <p><Icon /></p>
+    <p>{username}</p>
+  </div>
+  <div class="flex items-baseline gap-2">
+    <p class="text-2xl font-bold">{followers}</p>
+    <p>followers</p>
+  </div>
+</div>

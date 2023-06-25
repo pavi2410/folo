@@ -1,4 +1,23 @@
 ---
+import FoloWidgetCard from "../components/FoloWidgetCard.astro";
+import { faker } from "@faker-js/faker";
+
+const fakeProfiles = Array(40)
+	.fill(0)
+	.map(() => ({
+		platform: faker.helpers.weightedArrayElement(
+			Object.entries({
+				twitter: 10,
+				instagram: 5,
+				tiktok: 0.1,
+				youtube: 5,
+				github: 0.1,
+				snapchat: 5,
+			}).map(([k, v]) => ({ weight: v, value: k }))
+		),
+		username: faker.internet.userName(),
+		followers: faker.number.int({ min: 10, max: 1000000 }),
+	}));
 ---
 
 <html lang="en">
@@ -7,9 +26,49 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Folo - Coming SOON</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="min-h-screen w-screen bg-slate-200 overflow-clip">
+		<div
+			class="absolute inset-0 flex flex-wrap justify-center gap-y-8 gap-x-4 -skew-y-12 -skew-x-12 scale-150 transform-gpu select-none -z-50"
+		>
+			{
+				fakeProfiles.map((profile) => (
+					<FoloWidgetCard
+						platform={profile.platform}
+						username={profile.username}
+						followers={profile.followers}
+					/>
+				))
+			}
+		</div>
+		<div
+			class="flex flex-col md:flex-row justify-center items-center h-screen backdrop-blur text-white"
+		>
+			<div>
+				<h1 class="text-8xl font-black">Folo</h1>
+				<p class="text-xl" style="font-family: 'Comic Sans MS'">
+					Monitoring all your social media made SUPER easy
+				</p>
+				<img
+					src="/google-play-badge.png"
+					class="h-32"
+					alt="Google Play Badge"
+				/>
+			</div>
+			<div class="flex scale-75 transform-gpu">
+				<!-- show mobile screenshots -->
+				<img
+					src="/folo_home.jpg"
+					class="max-h-screen rounded-2xl border-4 border-gray-900 shadow"
+					alt="Folo app homescreen"
+				/>
+				<img
+					src="/folo_widgets.jpg"
+					class="max-h-screen rounded-2xl border-4 border-gray-900 shadow -translate-x-1/4 scale-95 -z-10 transform-gpu"
+					alt="Folo widgets"
+				/>
+			</div>
+		</div>
 	</body>
 </html>
