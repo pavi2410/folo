@@ -6,7 +6,8 @@ import presetUno from '@unocss/preset-uno'
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: 'hybrid',
+  compressHTML: true,
   adapter: cloudflare(),
   integrations: [
     unocss({
