@@ -2,21 +2,22 @@
 import FoloWidgetCard from "../components/FoloWidgetCard.astro";
 import { faker } from "@faker-js/faker";
 
-const fakeProfiles = Array(40)
+const fakeProfiles = Array(30)
 	.fill(0)
 	.map(() => ({
 		platform: faker.helpers.weightedArrayElement(
 			Object.entries({
-				twitter: 10,
+				twitter: 5,
 				instagram: 5,
-				tiktok: 0.1,
+				// tiktok: 0,
 				youtube: 5,
-				github: 0.1,
+				// github: 0,
 				snapchat: 5,
 			}).map(([k, v]) => ({ weight: v, value: k }))
 		),
 		username: faker.internet.userName(),
 		followers: faker.number.int({ min: 10, max: 1000000 }),
+		change: faker.number.int({ min: -10, max: 100 }),
 	}));
 ---
 
@@ -28,36 +29,33 @@ const fakeProfiles = Array(40)
 		<meta name="generator" content={Astro.generator} />
 		<title>Folo - Coming SOON</title>
 	</head>
-	<body class="min-h-screen w-screen bg-slate-200 overflow-clip">
+	<body class="min-h-screen w-screen overflow-clip">
 		<div
-			class="absolute inset-0 flex flex-wrap justify-center gap-y-8 gap-x-4 -skew-y-12 -skew-x-12 scale-150 transform-gpu select-none -z-50"
+			class="absolute inset-0 flex flex-wrap justify-center gap-8 -skew-y-12 -skew-x-12 scale-[2] transform-gpu select-none -z-50"
 		>
 			{
 				fakeProfiles.map((profile) => (
 					<FoloWidgetCard
-						platform={profile.platform}
-						username={profile.username}
-						followers={profile.followers}
+						profile={profile}
 					/>
 				))
 			}
 		</div>
 		<div
-			class="flex flex-col md:flex-row justify-center items-center h-screen backdrop-blur text-white"
+			class="flex flex-col md:flex-row justify-center items-center h-screen backdrop-blur-sm text-white"
 		>
 			<div>
-				<h1 class="text-8xl font-black">Folo</h1>
-				<p class="text-xl" style="font-family: 'Comic Sans MS'">
-					Monitoring all your social media made SUPER easy
+				<h1 class="text-8xl font-black drop-shadow-xl">Folo</h1>
+				<p class="text-xl drop-shadow-xl" style="font-family: 'Comic Sans MS'">
+					Monitoring all your social media made <b>SUPER</b> easy
 				</p>
 				<img
 					src="/google-play-badge.png"
-					class="h-32"
+					class="h-24"
 					alt="Google Play Badge"
 				/>
 			</div>
 			<div class="flex scale-75 transform-gpu">
-				<!-- show mobile screenshots -->
 				<img
 					src="/folo_home.jpg"
 					class="max-h-screen rounded-2xl border-4 border-gray-900 shadow"
