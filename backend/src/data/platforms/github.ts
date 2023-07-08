@@ -1,23 +1,25 @@
-import type { ProfileResult } from ".";
+import type { ProfileMetric } from '.';
 
-export async function fetchGithubProfile(
-  username: string
-): Promise<ProfileResult | null> {
-  const url = new URL("https://github.com/" + username);
+const REGEX = {
+	followers: />(\d+)<\/span>\s+followers/,
+};
 
-  const res = await fetch(url);
-  const html = await res.text();
+export async function fetchGithubProfile(username: string): Promise<ProfileMetric[] | null> {
+	const url = new URL('https://github.com/' + username);
 
-  const matches = html.match(/>(\d+)<\/span>\s+followers/);
-  if (!matches) {
-    return null;
-  }
-  const followers = parseInt(matches[1]) ?? -1;
+	const res = await fetch(url);
+	const html = await res.text();
 
-  return {
-    platform: "github",
-    username,
-    followers,
-    updatedAt: Date.now(),
-  };
+	const matches = html.match(REGEX.followers);
+	if (!matches) {
+		return null;
+	}
+	const followers = parseInt(matches[1]) ?? -1;
+
+	return [
+		{
+			metric: 'followers',
+			value: followers,
+		},
+	];
 }

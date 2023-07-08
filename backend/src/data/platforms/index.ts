@@ -1,18 +1,44 @@
-import { fetchGithubProfile } from "./github";
-import { fetchTwitterProfile } from "./twitter";
-import { fetchYoutubeProfile } from "./youtube";
+import { fetchGithubProfile } from './github';
+import { fetchThreadsProfile } from './threads';
+import { fetchTwitterProfile } from './twitter';
+import { fetchYoutubeProfile } from './youtube';
 
-export type ProfileResult = {
-  platform: string;
-  username: string;
-  followers: number;
-  updatedAt: number;
+export type ProfileMetric = {
+	metric: string;
+	value: number;
 };
 
-type ProfileFetcher = (username: string) => Promise<ProfileResult | null>;
+export type ProfileResult = {
+	platform: string;
+	username: string;
+	metrics: ProfileMetric[];
+	updatedAt: number;
+};
 
-export const platforms = new Map<string, ProfileFetcher>();
+export const PLATFORMS = {
+	github: fetchGithubProfile,
+	threads: fetchThreadsProfile,
+	twitter: fetchTwitterProfile,
+	youtube: fetchYoutubeProfile,
+} as const;
 
-platforms.set("github", fetchGithubProfile);
-platforms.set("twitter", fetchTwitterProfile);
-platforms.set("youtube", fetchYoutubeProfile);
+export type PlatformNames = keyof typeof PLATFORMS;
+
+export const platformNames = Object.keys(PLATFORMS) as ['github', 'threads', 'twitter', 'youtube'];
+
+export async function fetchProfile(platform: PlatformNames, username: string): Promise<ProfileResult | null> {
+	const platformFetcher = PLATFORMS[platform];
+
+	const metrics = await platformFetcher(username);
+
+	if (!metrics) {
+		return null;
+	}
+
+	return {
+		platform,
+		username,
+		metrics,
+		updatedAt: Date.now(),
+	};
+}
