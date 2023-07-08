@@ -16,11 +16,11 @@ app.get(
 		z.object({
 			platform: z.enum(platformNames),
 			username: z.string(),
-			metric: z.string(),
+			// metric: z.string(),
 		})
 	),
 	async (c) => {
-		const { platform, username, metric } = c.req.valid('query');
+		const { platform, username } = c.req.valid('query');
 
 		const profile = await fetchProfile(platform, username);
 

@@ -1,17 +1,14 @@
-import type { ProfileMetric } from '.';
+import type { ProfileResult } from '.';
 
-export async function fetchYoutubeProfile(username: string): Promise<ProfileMetric[] | null> {
+export async function fetchYoutubeProfile(username: string): Promise<ProfileResult['metrics'] | null> {
 	const res = await fetch('https://youtube.com/@' + username);
 	const json = await res.text();
 
 	const subscribers_count = [...json.matchAll(/"simpleText":"(.*?) subscribers"/g)].map((m) => m[1]).at(-1) ?? '0';
 
-	return [
-		{
-			metric: 'subscribers',
-			value: compactStringToNumber(subscribers_count),
-		},
-	];
+	return {
+		subscribers: compactStringToNumber(subscribers_count),
+	};
 }
 
 function compactStringToNumber(compactString: string): number {

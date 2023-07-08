@@ -3,15 +3,10 @@ import { fetchThreadsProfile } from './threads';
 import { fetchTwitterProfile } from './twitter';
 import { fetchYoutubeProfile } from './youtube';
 
-export type ProfileMetric = {
-	metric: string;
-	value: number;
-};
-
 export type ProfileResult = {
 	platform: string;
 	username: string;
-	metrics: ProfileMetric[];
+	metrics: Record<string, number>;
 	updatedAt: number;
 };
 

@@ -1,6 +1,6 @@
-import type { ProfileMetric } from '.';
+import type { ProfileResult } from '.';
 
-export async function fetchTwitterProfile(username: string): Promise<ProfileMetric[] | null> {
+export async function fetchTwitterProfile(username: string): Promise<ProfileResult['metrics'] | null> {
 	const options = {
 		method: 'POST',
 		headers: {
@@ -25,16 +25,8 @@ export async function fetchTwitterProfile(username: string): Promise<ProfileMetr
 	const res = await fetch(url, options);
 	const json = await res.json();
 
-	console.log(json)
-
-	return [
-		{
-			metric: 'followers',
-			value: json.data.user.legacy.followers_count,
-		},
-		{
-			metric: 'subscribers',
-			value: 0,
-		},
-	];
+	return {
+		followers: json.data.user.legacy.followers_count,
+		subscribers: 0,
+	};
 }
