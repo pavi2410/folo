@@ -18,7 +18,7 @@ import androidx.glance.currentState
 import androidx.glance.layout.Column
 import androidx.glance.layout.Row
 import androidx.glance.layout.Spacer
-import androidx.glance.layout.fillMaxWidth
+import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.padding
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
@@ -29,6 +29,17 @@ import me.pavi2410.folo.models.FoloProfile
 import me.pavi2410.folo.ui.gradientDrawable
 
 class FoloWidget : GlanceAppWidget() {
+
+//    companion object {
+//        private val thinMode = DpSize(120.dp, 120.dp)
+//        private val smallMode = DpSize(184.dp, 184.dp)
+//        private val mediumMode = DpSize(260.dp, 200.dp)
+//        private val largeMode = DpSize(260.dp, 280.dp)
+//    }
+//
+//    override val sizeMode: SizeMode = SizeMode.Responsive(
+//        setOf(thinMode, smallMode, mediumMode, largeMode)
+//    )
 
     // Override the state definition to use our custom one using Kotlin serialization
     override val stateDefinition = FoloWidgetStateDef
@@ -62,18 +73,17 @@ class FoloWidget : GlanceAppWidget() {
 
 @Composable
 fun FoloCardWidget(data: FoloProfile) {
-    val colors = listOf(Color(0xff3B82F6), Color(0xff2563EB))
     val followersCount = compactDecimalFormat(data.followers)
 
     Column(
         modifier = GlanceModifier
-            .fillMaxWidth()
+            .fillMaxSize()
 //            .appWidgetBackground()
 //            .background(colors.last())
             .background(ImageProvider(gradientDrawable(data.platform)))
             .padding(16.dp)
     ) {
-        Column {
+        Row {
             Text(
                 data.username,
                 style = TextStyle(

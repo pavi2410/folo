@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 enum class FoloPlatform {
     Github,
+    Threads,
     Twitter,
     Youtube
 }

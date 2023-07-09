@@ -4,7 +4,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("plugin.serialization") version "1.8.21"
-    id("app.cash.sqldelight") version "2.0.0-rc01"
+    id("app.cash.sqldelight") version "2.0.0-rc02"
 }
 
 val keystoreProps by lazy { loadProps("D:/App Inventor/keystore.properties") }
@@ -84,7 +84,7 @@ sqldelight {
 }
 
 dependencies {
-    val composeBom = platform("androidx.compose:compose-bom:2023.06.00")
+    val composeBom = platform("androidx.compose:compose-bom:2023.06.01")
     implementation(composeBom)
 
     // Material Design 2
@@ -112,13 +112,13 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
-    implementation("br.com.devsrsouza.compose.icons:feather:1.1.0")
+    implementation("br.com.devsrsouza.compose.icons:tabler-icons:1.1.0")
 
     implementation("io.insert-koin:koin-androidx-compose:3.4.5")
     implementation("io.insert-koin:koin-androidx-workmanager:3.4.2")
 
-    implementation("app.cash.sqldelight:android-driver:2.0.0-rc01")
-    implementation("app.cash.sqldelight:coroutines-extensions:2.0.0-rc01")
+    implementation("app.cash.sqldelight:android-driver:2.0.0-rc02")
+    implementation("app.cash.sqldelight:coroutines-extensions:2.0.0-rc02")
 
     implementation("com.himanshoe:charty:1.0.1")
 }

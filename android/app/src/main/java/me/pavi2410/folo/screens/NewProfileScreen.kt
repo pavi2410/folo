@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.FabPosition
@@ -23,17 +22,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import compose.icons.FeatherIcons
-import compose.icons.feathericons.Check
+import compose.icons.TablerIcons
+import compose.icons.tablericons.Check
 import kotlinx.coroutines.launch
 import me.pavi2410.folo.FoloRepo
+import me.pavi2410.folo.components.PlatformMetricSelection
 import me.pavi2410.folo.components.PlatformSelection
 import me.pavi2410.folo.models.FoloPlatform
-import me.pavi2410.folo.models.FoloProfile
 import org.koin.compose.koinInject
 
 @Composable
@@ -41,6 +39,7 @@ fun NewProfileScreen(navController: NavController, foloRepo: FoloRepo = koinInje
     val coroutineScope = rememberCoroutineScope()
     var platform by remember { mutableStateOf(FoloPlatform.Twitter) }
     var username by remember { mutableStateOf("") }
+    var platformMetric by remember { mutableStateOf("") }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -60,12 +59,12 @@ fun NewProfileScreen(navController: NavController, foloRepo: FoloRepo = koinInje
             ExtendedFloatingActionButton(
                 modifier = Modifier.navigationBarsPadding(),
                 icon = {
-                    Icon(FeatherIcons.Check, contentDescription = null)
+                    Icon(TablerIcons.Check, contentDescription = null)
                 },
                 text = { Text("Done") },
                 onClick = {
                     coroutineScope.launch {
-                        foloRepo.addProfile(platform, username)
+                        foloRepo.addProfile(platform, username, platformMetric)
                         navController.navigateUp()
                     }
                 }
@@ -84,6 +83,8 @@ fun NewProfileScreen(navController: NavController, foloRepo: FoloRepo = koinInje
                 value = username,
                 onValueChange = { username = it }
             )
+
+            PlatformMetricSelection(platform) { selection -> platformMetric = selection }
         }
     }
 }

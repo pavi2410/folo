@@ -26,11 +26,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import compose.icons.FeatherIcons
-import compose.icons.feathericons.Eye
-import compose.icons.feathericons.PieChart
-import compose.icons.feathericons.Settings
-import compose.icons.feathericons.Trash
+import compose.icons.TablerIcons
+import compose.icons.tablericons.ChartPie
+import compose.icons.tablericons.Eye
+import compose.icons.tablericons.Settings
+import compose.icons.tablericons.Trash
 import me.pavi2410.folo.compactDecimalFormat
 import me.pavi2410.folo.models.FoloProfile
 import me.pavi2410.folo.ui.backgroundGradient
@@ -53,7 +53,7 @@ fun FoloCard(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(16.dp, 8.dp)
             .clip(RoundedCornerShape(16.dp))
             .shadow(
                 elevation = 16.dp,
@@ -111,14 +111,14 @@ fun FoloCard(
                     uriHandler.openUri(profileLink(data))
                 }) {
                     Icon(
-                        imageVector = FeatherIcons.Eye,
+                        imageVector = TablerIcons.Eye,
                         contentDescription = null,
                         tint = Color.White
                     )
                 }
                 IconButton(onClick = onDetail) {
                     Icon(
-                        imageVector = FeatherIcons.PieChart,
+                        imageVector = TablerIcons.ChartPie,
                         contentDescription = null,
                         tint = Color.White
                     )
@@ -131,14 +131,14 @@ fun FoloCard(
             ) {
                 IconButton(onClick = {}) {
                     Icon(
-                        imageVector = FeatherIcons.Settings,
+                        imageVector = TablerIcons.Settings,
                         contentDescription = null,
                         tint = Color.White
                     )
                 }
                 IconButton(onClick = onDelete) {
                     Icon(
-                        imageVector = FeatherIcons.Trash,
+                        imageVector = TablerIcons.Trash,
                         contentDescription = null,
                         tint = Color.White
                     )

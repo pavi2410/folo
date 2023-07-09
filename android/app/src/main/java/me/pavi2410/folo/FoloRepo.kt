@@ -14,7 +14,7 @@ class FoloRepo(private val database: FoloDatabase) {
             .asFlow()
             .mapToList(Dispatchers.IO)
 
-    suspend fun addProfile(platform: FoloPlatform, username: String) {
+    suspend fun addProfile(platform: FoloPlatform, username: String, platformMetric: String) {
         // todo:
         //  - make sure username is not empty
         //  - check if profile already exists
@@ -25,7 +25,11 @@ class FoloRepo(private val database: FoloDatabase) {
 
         val profileRes = fetchProfile(platform, username)
 
-        database.foloProfileQueries.insertProfile(platform, username, profileRes.followers)
+        database.foloProfileQueries.insertProfile(
+            platform,
+            username,
+            profileRes.metrics[platformMetric] ?: 0
+        )
     }
 
     fun deleteProfile(profileId: Long) {

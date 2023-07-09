@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/app_name"
-    android:minWidth="60dp"
+    android:minWidth="50dp"
     android:minHeight="50dp"
     android:initialLayout="@layout/folo_widget_loading"
     android:initialKeyguardLayout="@layout/folo_widget_loading"
@@ -10,6 +10,6 @@
     android:targetCellWidth="2"
     android:targetCellHeight="1"
     android:widgetCategory="home_screen"
-    android:updatePeriodMillis="3600000"
+    android:updatePeriodMillis="0"
     android:widgetFeatures="reconfigurable"
     android:configure="me.pavi2410.folo.widgets.FoloWidgetConfigureActivity"/>

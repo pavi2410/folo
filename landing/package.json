@@ -1,0 +1,24 @@
+{
+  "name": "folo-lp",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^6.5.0",
+    "@faker-js/faker": "^8.0.2",
+    "@unocss/astro": "^0.53.3",
+    "@unocss/reset": "^0.53.3",
+    "astro": "^2.7.0"
+  },
+  "devDependencies": {
+    "@iconify-json/tabler": "^1.1.79",
+    "@unocss/preset-uno": "^0.53.3",
+    "unplugin-icons": "^0.16.3"
+  }
+}

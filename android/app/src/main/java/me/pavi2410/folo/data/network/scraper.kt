@@ -16,7 +16,7 @@ import me.pavi2410.folo.models.FoloProfile
 data class FoloProfileResponse(
     val platform: String,
     val username: String,
-    val followers: Long,
+    val metrics: Map<String, Long>,
     val updatedAt: Long,
 )
 
@@ -28,7 +28,7 @@ suspend fun fetchProfile(platform: FoloPlatform, username: String): FoloProfileR
         install(HttpCache)
     }
 
-    val response: HttpResponse = client.get("https://folo.pavi2410.me/profile") {
+    val response: HttpResponse = client.get("https://api.folo.pavi2410.me/profile") {
         url {
             parameters.append("platform", platform.toString().lowercase())
             parameters.append("username", username)
