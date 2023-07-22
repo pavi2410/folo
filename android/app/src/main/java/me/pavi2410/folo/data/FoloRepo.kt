@@ -1,9 +1,9 @@
-package me.pavi2410.folo
+package me.pavi2410.folo.data
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import kotlinx.coroutines.Dispatchers
-import me.pavi2410.folo.data.network.fetchProfile
+import me.pavi2410.folo.FoloDatabase
 import me.pavi2410.folo.models.FoloPlatform
 import me.pavi2410.folo.models.FoloProfile
 import me.pavi2410.folo.widgets.FoloWidgetInfo
@@ -32,7 +32,7 @@ class FoloRepo(private val database: FoloDatabase) {
         )
     }
 
-    fun deleteProfile(profileId: Long) {
+    fun deleteProfile(profileId: String) {
         database.foloProfileQueries.deleteProfile(profileId)
     }
 
@@ -42,7 +42,7 @@ class FoloRepo(private val database: FoloDatabase) {
 
         return FoloWidgetInfo.Available(
             FoloProfile(
-                999,
+                "999",
                 profile.platform,
                 profile.username,
                 profile.followers
@@ -50,7 +50,7 @@ class FoloRepo(private val database: FoloDatabase) {
         )
     }
 
-    fun upsertWidget(appWidgetId: Int, profileId: Long) {
+    fun upsertWidget(appWidgetId: Int, profileId: String) {
         database.foloWidgetQueries.insertWidget(appWidgetId.toLong(), profileId)
     }
 }

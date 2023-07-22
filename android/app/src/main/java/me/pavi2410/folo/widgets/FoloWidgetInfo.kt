@@ -32,7 +32,7 @@ object FoloWidgetInfoSerializer : Serializer<FoloWidgetInfo> {
             input.readBytes().decodeToString()
         )
     } catch (exception: SerializationException) {
-        throw CorruptionException("Could not read weather data: ${exception.message}")
+        throw CorruptionException("Could not read FoloWidgetInfo data: ${exception.message}")
     }
 
     override suspend fun writeTo(t: FoloWidgetInfo, output: OutputStream) {

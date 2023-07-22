@@ -10,16 +10,14 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import me.pavi2410.folo.FoloRepo
+import me.pavi2410.folo.data.FoloRepo
 import kotlin.time.Duration.Companion.days
-import kotlin.time.Duration.Companion.hours
-import kotlin.time.Duration.Companion.minutes
 import kotlin.time.toJavaDuration
 
 class FoloWidgetWorker(
-        private val foloRepo: FoloRepo,
-        private val context: Context,
-        workerParams: WorkerParameters
+    private val foloRepo: FoloRepo,
+    private val context: Context,
+    workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result {
         val manager = GlanceAppWidgetManager(context)

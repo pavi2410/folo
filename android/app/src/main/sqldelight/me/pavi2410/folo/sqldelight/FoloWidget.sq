@@ -1,6 +1,6 @@
 CREATE TABLE FoloWidget (
   id INTEGER PRIMARY KEY,
-  profileId INTEGER NOT NULL,
+  profileId TEXT NOT NULL,
   FOREIGN KEY (profileId) REFERENCES FoloProfile (id) ON DELETE CASCADE
 );
 

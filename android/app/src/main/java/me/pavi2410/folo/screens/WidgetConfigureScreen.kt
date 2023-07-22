@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.state.updateAppWidgetState
 import kotlinx.coroutines.launch
-import me.pavi2410.folo.FoloRepo
+import me.pavi2410.folo.data.FoloRepo
 import me.pavi2410.folo.components.FoloWidgetSelectionCard
 import me.pavi2410.folo.models.FoloProfile
 import me.pavi2410.folo.widgets.FoloWidget
@@ -58,7 +58,7 @@ fun WidgetConfigureScreen(
         ) {
             FoloWidgetInfo.Available(
                 FoloProfile(
-                    999,
+                    "999",
                     profile.platform,
                     profile.username,
                     profile.followers
@@ -74,7 +74,7 @@ fun WidgetConfigureScreen(
         topBar = {
             Row(Modifier.systemBarsPadding()) {
                 Text(
-                    text = "Select a profile to display as widget",
+                    text = "select a profile to display as widget",
                     style = MaterialTheme.typography.h4,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier

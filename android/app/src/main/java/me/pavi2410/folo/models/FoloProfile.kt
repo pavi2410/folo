@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class FoloProfile(
-    val id: Long,
+    val id: String,
     val platform: FoloPlatform,
     val username: String,
     val followers: Long

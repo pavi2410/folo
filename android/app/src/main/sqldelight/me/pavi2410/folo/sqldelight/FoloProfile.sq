@@ -1,7 +1,7 @@
 import me.pavi2410.folo.models.FoloPlatform;
 
 CREATE TABLE FoloProfile (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  id TEXT PRIMARY KEY,
   platform TEXT AS FoloPlatform NOT NULL,
   username TEXT NOT NULL,
   followers INTEGER NOT NULL

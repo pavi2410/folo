@@ -31,7 +31,7 @@ fun StatsScreen(
         topBar = {
             Row(Modifier.statusBarsPadding()) {
                 Text(
-                    text = "Stats",
+                    text = "stats",
                     style = MaterialTheme.typography.h4,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier

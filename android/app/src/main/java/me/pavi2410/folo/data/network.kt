@@ -1,4 +1,4 @@
-package me.pavi2410.folo.data.network
+package me.pavi2410.folo.data
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -10,7 +10,6 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.Serializable
 import me.pavi2410.folo.models.FoloPlatform
-import me.pavi2410.folo.models.FoloProfile
 
 @Serializable
 data class FoloProfileResponse(

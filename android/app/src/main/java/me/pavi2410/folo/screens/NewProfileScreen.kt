@@ -28,7 +28,7 @@ import androidx.navigation.NavController
 import compose.icons.TablerIcons
 import compose.icons.tablericons.Check
 import kotlinx.coroutines.launch
-import me.pavi2410.folo.FoloRepo
+import me.pavi2410.folo.data.FoloRepo
 import me.pavi2410.folo.components.PlatformMetricSelection
 import me.pavi2410.folo.components.PlatformSelection
 import me.pavi2410.folo.models.FoloPlatform
@@ -37,7 +37,7 @@ import org.koin.compose.koinInject
 @Composable
 fun NewProfileScreen(navController: NavController, foloRepo: FoloRepo = koinInject()) {
     val coroutineScope = rememberCoroutineScope()
-    var platform by remember { mutableStateOf(FoloPlatform.Twitter) }
+    var platform by remember { mutableStateOf(FoloPlatform.twitter) }
     var username by remember { mutableStateOf("") }
     var platformMetric by remember { mutableStateOf("") }
 
@@ -46,7 +46,7 @@ fun NewProfileScreen(navController: NavController, foloRepo: FoloRepo = koinInje
         topBar = {
             Row(Modifier.systemBarsPadding()) {
                 Text(
-                    text = "Track New Profile",
+                    text = "track a new profile",
                     style = MaterialTheme.typography.h4,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier

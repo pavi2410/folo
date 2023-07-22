@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.sqlite.db.SupportSQLiteDatabase
 import app.cash.sqldelight.EnumColumnAdapter
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
+import me.pavi2410.folo.data.FoloRepo
 import me.pavi2410.folo.sqldelight.FoloProfile
 import me.pavi2410.folo.widgets.FoloWidgetWorker
 import org.koin.android.ext.koin.androidContext
