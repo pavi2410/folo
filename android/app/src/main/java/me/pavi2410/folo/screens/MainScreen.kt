@@ -20,34 +20,25 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import compose.icons.TablerIcons
 import compose.icons.tablericons.InfoCircle
 import compose.icons.tablericons.MoodCrazyHappy
-import compose.icons.tablericons.MoodEmpty
 import compose.icons.tablericons.Settings
 import me.pavi2410.folo.components.FoloCard
-import me.pavi2410.folo.data.FoloRepo
-import me.pavi2410.folo.models.FoloProfile
 import me.pavi2410.folo.viewmodels.MainScreenViewModel
 import org.koin.androidx.compose.koinViewModel
-import org.koin.compose.koinInject
 
 @Composable
 fun MainScreen(
     navController: NavController,
-    foloRepo: FoloRepo = koinInject(),
     mainScreenViewModel: MainScreenViewModel = koinViewModel()
 ) {
 
@@ -134,7 +125,7 @@ fun MainScreen(
                                 navController.navigate("stats/${data.id}")
                             },
                             onDelete = {
-                                foloRepo.deleteProfile(data.id)
+                                mainScreenViewModel.deleteProfile(data.id)
                             }
                         )
                     }

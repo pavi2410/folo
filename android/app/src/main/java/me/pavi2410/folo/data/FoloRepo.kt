@@ -42,8 +42,17 @@ class FoloRepo(private val database: FoloDatabase) {
         )
     }
 
-    fun deleteProfile(profileId: String) {
-        database.foloProfileQueries.deleteProfile(profileId)
+    suspend fun deleteProfile(profileId: String) {
+        val currentUser = auth.currentUser ?: return
+
+        db.collection("users")
+            .document(currentUser.uid)
+            .set(
+                mapOf(
+                    "profiles" to getProfileRefs().filter { it.id != profileId }
+                )
+            )
+            .await()
     }
 
     fun fetchWidgetInfo(appWidgetId: Int): FoloWidgetInfo {
@@ -65,13 +74,13 @@ class FoloRepo(private val database: FoloDatabase) {
     }
 
     suspend fun getProfileRefs(): List<DocumentReference> {
-        auth.signInAnonymously().await()
         val currentUser = auth.currentUser ?: return emptyList()
 
         Log.d("GetProfileRefs", currentUser.uid)
         val userDoc = db.collection("users")
             .document(currentUser.uid)
-            .get().await()
+            .get()
+            .await()
 
         if (!userDoc.exists()) {
             Log.d("GetProfileRefs", "User does not exist")
@@ -95,7 +104,8 @@ class FoloRepo(private val database: FoloDatabase) {
         val profileHistoryDoc = profileRef.collection("history")
             .orderBy("timestamp", Query.Direction.DESCENDING)
             .limit(1)
-            .get().await()
+            .get()
+            .await()
 
         Log.d("GetProfile", profileHistoryDoc.documents.toString())
 

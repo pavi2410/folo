@@ -35,7 +35,10 @@ import me.pavi2410.folo.models.FoloPlatform
 import org.koin.compose.koinInject
 
 @Composable
-fun NewProfileScreen(navController: NavController, foloRepo: FoloRepo = koinInject()) {
+fun NewProfileScreen(
+    navController: NavController,
+    foloRepo: FoloRepo = koinInject()
+) {
     val coroutineScope = rememberCoroutineScope()
     var platform by remember { mutableStateOf(FoloPlatform.twitter) }
     var username by remember { mutableStateOf("") }

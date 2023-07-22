@@ -38,4 +38,13 @@ class MainScreenViewModel(
             }
         }
     }
+
+    fun deleteProfile(profileId: String) {
+        viewModelScope.launch {
+            foloRepo.deleteProfile(profileId)
+            _isLoading.value = true
+            _profiles.value = foloRepo.getAllProfiles()
+            _isLoading.value = false
+        }
+    }
 }
