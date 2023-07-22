@@ -5,6 +5,8 @@ plugins {
     kotlin("android")
     kotlin("plugin.serialization") version "1.8.21"
     id("app.cash.sqldelight") version "2.0.0-rc02"
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 val keystoreProps by lazy { loadProps("D:/App Inventor/keystore.properties") }
@@ -84,8 +86,8 @@ sqldelight {
 }
 
 dependencies {
-    val composeBom = platform("androidx.compose:compose-bom:2023.06.01")
-    implementation(composeBom)
+    implementation(platform("androidx.compose:compose-bom:2023.06.01"))
+    implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
 
     // Material Design 2
     implementation("androidx.compose.material:material")
@@ -95,11 +97,11 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
 
     implementation("androidx.activity:activity-compose:1.7.2")
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
-
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
     implementation("androidx.navigation:navigation-compose:2.6.0")
-
     implementation("androidx.work:work-runtime-ktx:2.8.1")
+
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
 
     // For Glance support
     implementation("androidx.glance:glance:1.0.0-beta01")
@@ -112,13 +114,18 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
-    implementation("br.com.devsrsouza.compose.icons:tabler-icons:1.1.0")
-
     implementation("io.insert-koin:koin-androidx-compose:3.4.5")
     implementation("io.insert-koin:koin-androidx-workmanager:3.4.2")
 
     implementation("app.cash.sqldelight:android-driver:2.0.0-rc02")
     implementation("app.cash.sqldelight:coroutines-extensions:2.0.0-rc02")
+
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx")
+
+    implementation("br.com.devsrsouza.compose.icons:tabler-icons:1.1.0")
 
     implementation("com.himanshoe:charty:1.0.1")
 }

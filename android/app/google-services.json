@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "995306907734",
+    "project_id": "folo-acc8b",
+    "storage_bucket": "folo-acc8b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995306907734:android:a13eb4aa311dec120db3f7",
+        "android_client_info": {
+          "package_name": "me.pavi2410.folo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995306907734-m035urpb4t9b791kmiksapkto0u2b90m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAohhnIKta_7w8Yg3UC3fKFFqt0qW-qT-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995306907734-m035urpb4t9b791kmiksapkto0u2b90m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
