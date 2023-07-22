@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -30,6 +31,7 @@ import compose.icons.TablerIcons
 import compose.icons.tablericons.ChartPie
 import compose.icons.tablericons.Eye
 import compose.icons.tablericons.Settings
+import compose.icons.tablericons.Tools
 import compose.icons.tablericons.Trash
 import me.pavi2410.folo.compactDecimalFormat
 import me.pavi2410.folo.models.FoloProfile
@@ -68,11 +70,11 @@ fun FoloCard(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth(0.75f)
+            modifier = Modifier.fillMaxWidth(0.75f).padding(vertical = 8.dp)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                    imageVector = platformIcon,
+                    painter = painterResource(id = platformIcon),
                     contentDescription = null,
                     tint = Color.White,
                 )
@@ -112,14 +114,14 @@ fun FoloCard(
                 }) {
                     Icon(
                         imageVector = TablerIcons.Eye,
-                        contentDescription = null,
+                        contentDescription = "view profile",
                         tint = Color.White
                     )
                 }
                 IconButton(onClick = onDetail) {
                     Icon(
                         imageVector = TablerIcons.ChartPie,
-                        contentDescription = null,
+                        contentDescription = "profile stats",
                         tint = Color.White
                     )
                 }
@@ -131,15 +133,15 @@ fun FoloCard(
             ) {
                 IconButton(onClick = {}) {
                     Icon(
-                        imageVector = TablerIcons.Settings,
-                        contentDescription = null,
+                        imageVector = TablerIcons.Tools,
+                        contentDescription = "configure profile",
                         tint = Color.White
                     )
                 }
                 IconButton(onClick = onDelete) {
                     Icon(
                         imageVector = TablerIcons.Trash,
-                        contentDescription = null,
+                        contentDescription = "remove profile",
                         tint = Color.White
                     )
                 }

@@ -1,67 +1,62 @@
 package me.pavi2410.folo.ui
 
 import androidx.compose.ui.graphics.Color
-import compose.icons.TablerIcons
-import compose.icons.tablericons.BrandGithub
-import compose.icons.tablericons.BrandTwitter
-import compose.icons.tablericons.BrandYoutube
-import compose.icons.tablericons.HeartBroken
 import me.pavi2410.folo.R
 import me.pavi2410.folo.models.FoloPlatform
 import me.pavi2410.folo.models.FoloProfile
 import me.pavi2410.folo.ui.theme.TailwindColors
 
 fun profileLink(data: FoloProfile) = when (data.platform) {
-    FoloPlatform.Github -> "https://github.com/${data.username}"
-    FoloPlatform.Twitter -> "https://twitter.com/${data.username}"
-    FoloPlatform.Youtube -> "https://youtube.com/@${data.username}"
-    FoloPlatform.Threads -> "https://threads.net/@${data.username}"
+    FoloPlatform.github -> "https://github.com/${data.username}"
+    FoloPlatform.twitter -> "https://twitter.com/${data.username}"
+    FoloPlatform.youtube -> "https://youtube.com/@${data.username}"
+    FoloPlatform.threads -> "https://threads.net/@${data.username}"
 }
 
 fun backgroundGradient(platform: FoloPlatform) = when (platform) {
-    FoloPlatform.Github -> listOf(
-        Color(TailwindColors.neutral800),
-        Color(TailwindColors.neutral900)
+    FoloPlatform.github -> listOf(
+        Color(TailwindColors.stone700),
+        Color(TailwindColors.stone900)
     )
 
-    FoloPlatform.Twitter -> listOf(
+    FoloPlatform.threads -> listOf(
+        Color(TailwindColors.zinc800),
+        Color(TailwindColors.zinc900)
+    )
+
+    FoloPlatform.twitter -> listOf(
         Color(TailwindColors.blue500),
         Color(TailwindColors.blue600)
     )
 
-    FoloPlatform.Youtube -> listOf(
+    FoloPlatform.youtube -> listOf(
         Color(TailwindColors.red500),
         Color(TailwindColors.red600)
-    )
-
-    FoloPlatform.Threads -> listOf(
-        Color(TailwindColors.neutral800),
-        Color(TailwindColors.neutral900)
     )
 }
 
 fun gradientDrawable(platform: FoloPlatform) = when (platform) {
-    FoloPlatform.Github -> R.drawable.github_gradient
-    FoloPlatform.Twitter -> R.drawable.twitter_gradient
-    FoloPlatform.Youtube -> R.drawable.youtube_gradient
-    FoloPlatform.Threads -> R.drawable.github_gradient
+    FoloPlatform.github -> R.drawable.github_gradient
+    FoloPlatform.threads -> R.drawable.github_gradient
+    FoloPlatform.twitter -> R.drawable.twitter_gradient
+    FoloPlatform.youtube -> R.drawable.youtube_gradient
 }
 
 fun followersText(platform: FoloPlatform) = when (platform) {
-    FoloPlatform.Youtube -> "subscribers"
+    FoloPlatform.youtube -> "subscribers"
     else -> "followers"
 }
 
 fun platformMetrics(platform: FoloPlatform) = when (platform) {
-    FoloPlatform.Github -> listOf("followers")
-    FoloPlatform.Threads -> listOf("followers")
-    FoloPlatform.Twitter -> listOf("followers", "subscribers")
-    FoloPlatform.Youtube -> listOf("subscribers")
+    FoloPlatform.github -> listOf("followers")
+    FoloPlatform.threads -> listOf("followers")
+    FoloPlatform.twitter -> listOf("followers", "subscribers")
+    FoloPlatform.youtube -> listOf("subscribers")
 }
 
 fun platformIcon(data: FoloPlatform) = when (data) {
-    FoloPlatform.Github -> TablerIcons.BrandGithub
-    FoloPlatform.Twitter -> TablerIcons.BrandTwitter
-    FoloPlatform.Youtube -> TablerIcons.BrandYoutube
-    FoloPlatform.Threads -> TablerIcons.HeartBroken // TODO: Replace this icon when available
+    FoloPlatform.github -> R.drawable.brand_github
+    FoloPlatform.threads -> R.drawable.brand_threads
+    FoloPlatform.twitter -> R.drawable.brand_twitter
+    FoloPlatform.youtube -> R.drawable.brand_youtube
 }

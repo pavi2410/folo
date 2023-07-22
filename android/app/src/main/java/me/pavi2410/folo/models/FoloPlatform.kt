@@ -2,10 +2,11 @@ package me.pavi2410.folo.models
 
 import kotlinx.serialization.Serializable
 
+@Suppress("EnumEntryName")
 @Serializable
 enum class FoloPlatform {
-    Github,
-    Threads,
-    Twitter,
-    Youtube
+    github,
+    threads,
+    twitter,
+    youtube
 }
