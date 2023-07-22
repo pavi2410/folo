@@ -5,6 +5,7 @@ import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -47,9 +48,10 @@ class FoloRepo(private val database: FoloDatabase) {
 
         db.collection("users")
             .document(currentUser.uid)
-            .set(
-                mapOf(
-                    "profiles" to getProfileRefs().filter { it.id != profileId }
+            .update(
+                "profiles",
+                FieldValue.arrayRemove(
+                    db.collection("profiles").document(profileId)
                 )
             )
             .await()
