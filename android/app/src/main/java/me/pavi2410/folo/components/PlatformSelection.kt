@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -19,7 +20,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import compose.icons.TablerIcons
+import compose.icons.tablericons.Check
 import me.pavi2410.folo.models.FoloPlatform
 import me.pavi2410.folo.ui.platformIcon
 
@@ -51,13 +55,21 @@ fun PlatformSelection(onSelect: (FoloPlatform) -> Unit) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
-                    imageVector = platformIcon[it]!!,
+                    painter = painterResource(id = platformIcon[it]!!),
                     contentDescription = null,
                 )
                 Spacer(Modifier.padding(8.dp))
                 Text(
                     it.name,
                 )
+                Spacer(modifier = Modifier.weight(1f))
+                if (selectedOption == it) {
+                    Icon(
+                        imageVector = TablerIcons.Check,
+                        contentDescription = null,
+                        tint = Color.Blue
+                    )
+                }
             }
         }
     }
