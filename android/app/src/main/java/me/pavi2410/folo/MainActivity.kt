@@ -9,9 +9,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import me.pavi2410.folo.screens.AboutScreen
 import me.pavi2410.folo.screens.StatsScreen
 import me.pavi2410.folo.screens.MainScreen
 import me.pavi2410.folo.screens.NewProfileScreen
+import me.pavi2410.folo.screens.SettingsScreen
 import me.pavi2410.folo.ui.theme.FoloTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,6 +28,12 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = "main") {
                     composable("main") {
                         MainScreen(navController)
+                    }
+                    composable("settings") {
+                        SettingsScreen()
+                    }
+                    composable("about") {
+                        AboutScreen()
                     }
                     composable(
                         "stats/{id}",
