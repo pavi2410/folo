@@ -24,7 +24,7 @@ import me.pavi2410.folo.ui.theme.TailwindColors
 @Composable
 fun StatsScreen(
     navController: NavController,
-    id: Int?
+    profileId: String?
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -40,7 +40,7 @@ fun StatsScreen(
             }
         }
     ) { innerPadding ->
-        if (id == null) {
+        if (profileId == null) {
             Text("You shouldn't be here...")
         } else {
             LazyColumn(

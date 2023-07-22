@@ -35,12 +35,9 @@ class MainActivity : ComponentActivity() {
                     composable("about") {
                         AboutScreen()
                     }
-                    composable(
-                        "stats/{id}",
-                        arguments = listOf(navArgument("id") { type = NavType.IntType })
-                    ) {
-                        val id = it.arguments?.getInt("id")
-                        StatsScreen(navController, id)
+                    composable("stats/{profile_id}") {
+                        val profileId = it.arguments?.getString("profile_id")
+                        StatsScreen(navController, profileId)
                     }
                     composable("new_profile") {
                         NewProfileScreen(navController)
