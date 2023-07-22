@@ -1,14 +1,20 @@
 package me.pavi2410.folo.screens
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.FabPosition
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -19,30 +25,40 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.state.updateAppWidgetState
+import compose.icons.TablerIcons
+import compose.icons.tablericons.MoodCrazyHappy
 import kotlinx.coroutines.launch
 import me.pavi2410.folo.data.FoloRepo
 import me.pavi2410.folo.components.FoloWidgetSelectionCard
 import me.pavi2410.folo.models.FoloProfile
+import me.pavi2410.folo.viewmodels.MainScreenViewModel
 import me.pavi2410.folo.widgets.FoloWidget
 import me.pavi2410.folo.widgets.FoloWidgetInfo
 import me.pavi2410.folo.widgets.FoloWidgetStateDef
+import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
 
 @Composable
 fun WidgetConfigureScreen(
     appWidgetId: Int,
     onConfigure: () -> Unit,
-    foloRepo: FoloRepo = koinInject()
+    foloRepo: FoloRepo = koinInject(),
+    mainScreenViewModel: MainScreenViewModel = koinViewModel()
 ) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
-    val profiles by remember { foloRepo.getAllProfiles() }.collectAsState(initial = emptyList())
+
+    val isLoading by mainScreenViewModel.isLoading.collectAsState()
+    val profiles by mainScreenViewModel.profiles.collectAsState()
+
     var selected by remember { mutableStateOf<FoloProfile?>(null) }
 
     suspend fun updateWidget(profile: FoloProfile) {
@@ -98,13 +114,41 @@ fun WidgetConfigureScreen(
             }
         }
     ) { innerPadding ->
-        LazyColumn(contentPadding = innerPadding) {
-            items(profiles) {
-                FoloWidgetSelectionCard(
-                    data = it,
-                    selected = it == selected,
-                    onSelect = { selected = it }
-                )
+        if (isLoading) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+        } else {
+            if (profiles.isEmpty()) {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Icon(
+                        imageVector = TablerIcons.MoodCrazyHappy,
+                        contentDescription = null,
+                        tint = Color.Gray,
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .size(128.dp)
+                    )
+
+                    Text("No profiles added yet!")
+                }
+            } else {
+                LazyColumn(contentPadding = innerPadding) {
+                    items(profiles) {
+                        FoloWidgetSelectionCard(
+                            data = it,
+                            selected = it == selected,
+                            onSelect = { selected = it }
+                        )
+                    }
+                }
             }
         }
     }

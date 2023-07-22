@@ -8,63 +8,34 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
+import me.pavi2410.folo.data.FoloRepo
 import me.pavi2410.folo.models.FoloPlatform
 import me.pavi2410.folo.models.FoloProfile
+import org.koin.compose.koinInject
 
-class MainScreenViewModel : ViewModel() {
-    val db = Firebase.firestore
-    val auth = Firebase.auth
+class MainScreenViewModel(
+    private val foloRepo: FoloRepo
+) : ViewModel() {
+
+    private val _isLoading = MutableStateFlow(true)
+    val isLoading = _isLoading.asStateFlow()
+
+    private val _profiles = MutableStateFlow<List<FoloProfile>>(emptyList())
+    val profiles = _profiles.asStateFlow()
 
     init {
         viewModelScope.launch {
-            auth.signInAnonymously().await()
+            Firebase.auth.signInAnonymously().await()
+            withContext(Dispatchers.IO) {
+                _profiles.value = foloRepo.getAllProfiles()
+                _isLoading.value = false
+            }
         }
-    }
-
-    suspend fun getProfileRefs(): List<DocumentReference> {
-        auth.signInAnonymously().await()
-        val currentUser = auth.currentUser ?: return emptyList()
-
-        Log.d("GetProfileRefs", currentUser.uid)
-        val userDoc = db.collection("users")
-            .document(currentUser.uid)
-            .get().await()
-
-        if (!userDoc.exists()) {
-            Log.d("GetProfileRefs", "User does not exist")
-            return emptyList()
-        }
-
-        val userProfilesRef = userDoc.get("profiles")
-        if (userProfilesRef == null) {
-            Log.d("GetProfileRefs", "User does not have any profiles")
-            return emptyList()
-        }
-
-        return userProfilesRef as List<DocumentReference>
-    }
-
-    suspend fun getProfile(profileRef: DocumentReference): FoloProfile {
-        val profileDoc = profileRef.get().await()
-        Log.d("GetProfile", profileDoc.id)
-        Log.d("GetProfile", profileDoc.data.toString())
-
-        val profileHistoryDoc = profileRef.collection("history")
-            .orderBy("timestamp", Query.Direction.DESCENDING)
-            .limit(1)
-            .get().await()
-
-        Log.d("GetProfile", profileHistoryDoc.documents.toString())
-
-        val latestMetricValue = profileHistoryDoc.documents.firstOrNull()
-
-        return FoloProfile(
-            id = profileDoc.id,
-            platform = FoloPlatform.valueOf(profileDoc["platform"] as String),
-            username = profileDoc["username"] as String,
-            followers = (latestMetricValue?.get("value") ?: 0L) as Long,
-        )
     }
 }

@@ -6,14 +6,19 @@ import app.cash.sqldelight.EnumColumnAdapter
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import me.pavi2410.folo.data.FoloRepo
 import me.pavi2410.folo.sqldelight.FoloProfile
+import me.pavi2410.folo.viewmodels.MainScreenViewModel
 import me.pavi2410.folo.widgets.FoloWidgetWorker
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.androidx.workmanager.dsl.workerOf
 import org.koin.dsl.module
 
 val appModule = module {
     single { createDatabase(androidContext()) }
     single { FoloRepo(get()) }
+
+    viewModel { MainScreenViewModel(get()) }
+
     workerOf(::FoloWidgetWorker)
 }
 
