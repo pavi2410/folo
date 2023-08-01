@@ -104,8 +104,8 @@ dependencies {
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
 
     // For Glance support
-    implementation("androidx.glance:glance:1.0.0-beta01")
-    implementation("androidx.glance:glance-appwidget:1.0.0-beta01")
+    implementation("androidx.glance:glance:1.0.0-rc01")
+    implementation("androidx.glance:glance-appwidget:1.0.0-rc01")
 
     implementation("io.ktor:ktor-client-core:2.3.1")
     implementation("io.ktor:ktor-client-cio:2.3.1")
