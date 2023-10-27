@@ -1,7 +1,14 @@
 import express from 'express'
+import cron from 'node-cron'
 import {main, single} from "./main.js";
 const app = express()
 const port = 3000
+
+cron.schedule('0 0 * * *', async () => {
+    console.time('cron job')
+    await main()
+    console.timeEnd('cron job')
+})
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
