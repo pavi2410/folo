@@ -13,11 +13,11 @@ val keystoreProps by lazy { loadProps("D:/App Inventor/keystore.properties") }
 
 android {
     namespace = "me.pavi2410.folo"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         applicationId = "me.pavi2410.folo"
         versionCode = 1
         versionName = "0.1"
@@ -55,7 +55,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.7"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
 
     packaging {
@@ -86,8 +86,8 @@ sqldelight {
 }
 
 dependencies {
-    implementation(platform("androidx.compose:compose-bom:2023.06.01"))
-    implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
+    implementation(platform("androidx.compose:compose-bom:2023.09.00"))
+    implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
 
     // Material Design 2
     implementation("androidx.compose.material:material")
@@ -97,15 +97,15 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
 
     implementation("androidx.activity:activity-compose:1.7.2")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
-    implementation("androidx.navigation:navigation-compose:2.6.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation("androidx.navigation:navigation-compose:2.7.2")
     implementation("androidx.work:work-runtime-ktx:2.8.1")
 
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
 
     // For Glance support
-    implementation("androidx.glance:glance:1.0.0-rc01")
-    implementation("androidx.glance:glance-appwidget:1.0.0-rc01")
+    implementation("androidx.glance:glance:1.0.0")
+    implementation("androidx.glance:glance-appwidget:1.0.0")
 
     implementation("io.ktor:ktor-client-core:2.3.1")
     implementation("io.ktor:ktor-client-cio:2.3.1")
