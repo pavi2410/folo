@@ -88,5 +88,7 @@ export async function single(profile_id) {
         });
 
         console.timeEnd('processing time')
+    } else {
+        console.error("doc doesnt exist for", profile_id)
     }
 }
