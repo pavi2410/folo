@@ -1,4 +1,4 @@
-import {db} from './db.js';
+import {db} from './admin.js';
 import {getProfile} from "./worker.js";
 
 export async function main() {
