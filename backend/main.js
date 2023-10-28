@@ -56,6 +56,9 @@ export async function single(profile_id) {
     let doc = await db.collection("profiles").doc(profile_id).get();
 
     if (doc.exists) {
+
+        console.log("doc exists for", profile_id)
+
         // doc.data() is never undefined for query doc snapshots
         let profile = doc.data()
 
