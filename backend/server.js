@@ -2,7 +2,9 @@ import express from 'express'
 import cron from 'node-cron'
 import {main, single} from "./main.js";
 const app = express()
-const port = 3000
+
+// Use PORT provided in environment or default to 3000
+const port = process.env.PORT || 3000;
 
 cron.schedule('0 0 * * *', async () => {
     console.time('cron job')
@@ -26,6 +28,7 @@ app.get('/notify', async (req, res) => {
     res.end()
 })
 
-app.listen(port, () => {
+// Listen on `port` and 0.0.0.0
+app.listen(port, "0.0.0.0", () => {
     console.log(`Example app listening on port ${port}`)
 })
