@@ -4,7 +4,7 @@ const REGEX = {
 	followers: /<meta name="description" content=".*? (\d+) Followers." \/>/,
 };
 
-export async function fetchThreadsProfile(username: string): Promise<ProfileResult['metrics'] | null> {
+export async function fetchProfile(username: string): Promise<ProfileResult['metrics'] | null> {
 	const url = new URL('https://www.threads.net/@' + username);
 
 	const res = await fetch(url, {

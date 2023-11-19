@@ -1,6 +1,6 @@
 import type { ProfileResult } from '.';
 
-export async function fetchYoutubeProfile(username: string): Promise<ProfileResult['metrics'] | null> {
+export async function fetchProfile(username: string): Promise<ProfileResult['metrics'] | null> {
 	const res = await fetch('https://youtube.com/@' + username);
 	const json = await res.text();
 

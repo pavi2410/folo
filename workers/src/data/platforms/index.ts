@@ -1,7 +1,8 @@
-import { fetchGithubProfile } from './github';
-import { fetchThreadsProfile } from './threads';
-import { fetchTwitterProfile } from './twitter';
-import { fetchYoutubeProfile } from './youtube';
+import * as githubModule from './github';
+import * as redditModule from './reddit';
+import * as threadsModule from './threads';
+import * as twitterModule from './twitter';
+import * as youtubeModule from './youtube';
 
 export type ProfileResult = {
 	platform: string;
@@ -11,18 +12,19 @@ export type ProfileResult = {
 };
 
 export const PLATFORMS = {
-	github: fetchGithubProfile,
-	threads: fetchThreadsProfile,
-	twitter: fetchTwitterProfile,
-	youtube: fetchYoutubeProfile,
+	github: githubModule,
+	reddit: redditModule,
+	threads: threadsModule,
+	twitter: twitterModule,
+	youtube: youtubeModule,
 } as const;
 
 export type PlatformNames = keyof typeof PLATFORMS;
 
-export const platformNames = Object.keys(PLATFORMS) as ['github', 'threads', 'twitter', 'youtube'];
+export const platformNames = Object.keys(PLATFORMS);
 
 export async function fetchProfile(platform: PlatformNames, username: string): Promise<ProfileResult | null> {
-	const platformFetcher = PLATFORMS[platform];
+	const platformFetcher = PLATFORMS[platform].fetchProfile;
 
 	const metrics = await platformFetcher(username);
 

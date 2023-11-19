@@ -4,7 +4,7 @@ const REGEX = {
 	followers: />(\d+)<\/span>\s+followers/,
 };
 
-export async function fetchGithubProfile(username: string): Promise<ProfileResult['metrics'] | null> {
+export async function fetchProfile(username: string): Promise<ProfileResult['metrics'] | null> {
 	const url = new URL('https://github.com/' + username);
 
 	const res = await fetch(url);
