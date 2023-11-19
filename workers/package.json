@@ -7,14 +7,13 @@
     "dev": "wrangler dev"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20230717.1",
-    "typescript": "^5.1.6",
-    "wrangler": "^3.3.0"
+    "@cloudflare/workers-types": "^4.20231025.0",
+    "typescript": "^5.2.2",
+    "wrangler": "^3.16.0"
   },
   "dependencies": {
-    "@hono/zod-validator": "^0.1.3",
-    "firebase": "^10.1.0",
-    "hono": "^3.3.2",
-    "zod": "^3.21.4"
+    "@hono/zod-validator": "^0.1.11",
+    "hono": "^3.10.1",
+    "zod": "^3.22.4"
   }
 }
