@@ -2,17 +2,19 @@
 import FoloWidgetCard from "../components/FoloWidgetCard.astro";
 import { faker } from "@faker-js/faker";
 
+faker.seed(123);
+
 const fakeProfiles = Array(30)
 	.fill(0)
 	.map(() => ({
 		platform: faker.helpers.weightedArrayElement(
 			Object.entries({
-				twitter: 5,
-				instagram: 5,
-				// tiktok: 0,
-				youtube: 5,
-				// github: 0,
-				snapchat: 5,
+				twitter: 1,
+				snapchat: 1,
+				instagram: 1,
+				youtube: 1,
+				// tiktok: 2,
+				// github: 2,
 			}).map(([k, v]) => ({ weight: v, value: k }))
 		),
 		username: faker.internet.userName(),
@@ -29,44 +31,59 @@ const fakeProfiles = Array(30)
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Folo - Coming SOON</title>
+		<link rel="preconnect" href="https://rsms.me/">
+		<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+		<style>
+		:root {
+			font-family: Inter, sans-serif;
+			font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+		}
+		@supports (font-variation-settings: normal) {
+			:root { font-family: InterVariable, sans-serif; }
+		}
+		</style>
 	</head>
 	<body class="min-h-screen w-screen overflow-clip">
 		<div
-			class="absolute inset-0 flex flex-wrap justify-center gap-8 -skew-y-12 -skew-x-12 scale-[2] transform-gpu select-none -z-50"
+			class="absolute inset-0 flex flex-wrap justify-center gap-8 x-12 -z-12 skew-x-12 scale-150 transform-gpu select-none"
 		>
 			{
 				fakeProfiles.map((profile) => (
-					<FoloWidgetCard
-						profile={profile}
-					/>
+					<FoloWidgetCard profile={profile} />
 				))
 			}
 		</div>
 		<div
 			class="flex flex-col md:flex-row justify-center items-center h-screen backdrop-blur-sm text-white"
 		>
-			<div>
-				<h1 class="text-8xl font-black drop-shadow-xl">Folo</h1>
-				<p class="text-xl drop-shadow-xl" style="font-family: 'Comic Sans MS'">
-					Monitoring all your social media made <b>SUPER</b> easy
-				</p>
-				<img
-					src="/google-play-badge.png"
-					class="h-24"
-					alt="Google Play Badge"
-				/>
+			<div class="flex-1 flex justify-end">
+				<div class="flex flex-col gap-4 justify-center h-screen w-fit">
+					<h1 class="text-8xl tracking-wider drop-shadow-2xl font-bold text-white/90" style="text-shadow: 3px 3px hsla(180, 100%, 50%, 0.8), -3px -3px hsl(300, 100%, 50%, 0.8)">folo</h1>
+					<p class="text-2xl drop-shadow-2xl font-extrabold text-neutral-200">
+						Monitoring all your social media made <span class="underline decoration-wavy text-white">super</span> easy
+					</p>
+					<a href="https://play.google.com/store/apps/details?id=me.pavi2410.folo">
+						<img
+							src="/google-play-badge.png"
+							class="h-24 -m-4"
+							alt="Google Play Badge"
+						/>
+					</a>
+				</div>
 			</div>
-			<div class="flex scale-75 transform-gpu">
-				<img
-					src="/folo_home.jpg"
-					class="max-h-screen rounded-2xl border-4 border-gray-900 shadow"
-					alt="Folo app homescreen"
-				/>
-				<img
-					src="/folo_widgets.jpg"
-					class="max-h-screen rounded-2xl border-4 border-gray-900 shadow -translate-x-1/4 scale-95 -z-10 transform-gpu"
-					alt="Folo widgets"
-				/>
+			<div class="flex-1">
+				<div class="flex scale-75">
+					<img
+						src="/folo_home.jpg"
+						class="max-h-screen rounded-2xl border-4 border-gray-900 drop-shadow-2xl"
+						alt="Folo app homescreen"
+					/>
+					<img
+						src="/folo_widgets.jpg"
+						class="max-h-screen rounded-2xl border-4 border-gray-900 drop-shadow-2xl -translate-x-1/4 scale-95 -z-10 hover:scale-100 hover:z-10 transition-all duration-300 ease-in-out"
+						alt="Folo widgets"
+					/>
+				</div>
 			</div>
 		</div>
 	</body>

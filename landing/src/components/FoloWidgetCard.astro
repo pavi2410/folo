@@ -35,6 +35,15 @@ const platforms = {
   },
 };
 
+interface Props {
+  profile: {
+    platform: keyof typeof platforms;
+    username: string;
+    followers: number;
+    change: number;
+  };
+}
+
 const {
   profile: { platform, username, followers, change },
 } = Astro.props;
