@@ -11,27 +11,27 @@ import IconTriangleInverted from "~icons/tabler/triangle-inverted-filled";
 const platforms = {
   twitter: {
     icon: IconTwitter,
-    gradient: "from-blue-500 to-blue-600 shadow-blue-700",
+    gradient: "from-blue-500 to-blue-600 shadow-blue-700/50",
   },
   instagram: {
     icon: IconInstagram,
-    gradient: "from-pink-500 to-pink-600 shadow-pink-700",
+    gradient: "from-pink-500 to-pink-600 shadow-pink-700/50",
   },
   tiktok: {
     icon: IconTiktok,
-    gradient: "from-black to-gray-900 shadow-gray-900",
+    gradient: "from-black to-gray-900 shadow-gray-900/50",
   },
   youtube: {
     icon: IconYoutube,
-    gradient: "from-red-500 to-red-600 shadow-red-700",
+    gradient: "from-red-500 to-red-600 shadow-red-700/50",
   },
   github: {
     icon: IconGithub,
-    gradient: "from-neutral-800 to-neutral-900 shadow-neutral-900",
+    gradient: "from-neutral-800 to-neutral-900 shadow-neutral-900/50",
   },
   snapchat: {
     icon: IconSnapchat,
-    gradient: "from-yellow-300 to-yellow-400 shadow-yellow-600 !text-black",
+    gradient: "from-yellow-300 to-yellow-400 shadow-yellow-600/50 !text-black",
   },
 };
 
@@ -54,7 +54,7 @@ const ChangeIcon = change > 0 ? IconTriangle : IconTriangleInverted;
 ---
 
 <div
-  class=`w-fit p-4 rounded-xl shadow-2xl text-lg text-white bg-gradient-to-b ${platforms[platform].gradient}`
+  class=`w-fit p-4 rounded-xl shadow-xl text-lg text-white bg-gradient-to-b ${platforms[platform].gradient}`
 >
   <div class="flex items-center gap-2">
     <p><PlatformIcon /></p>

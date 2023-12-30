@@ -2,9 +2,9 @@
 import FoloWidgetCard from "../components/FoloWidgetCard.astro";
 import { faker } from "@faker-js/faker";
 
-faker.seed(123);
+faker.seed(1234);
 
-const fakeProfiles = Array(30)
+const fakeProfiles = Array(25)
 	.fill(0)
 	.map(() => ({
 		platform: faker.helpers.weightedArrayElement(
@@ -57,15 +57,15 @@ const fakeProfiles = Array(30)
 			class="flex flex-col md:flex-row justify-center items-center h-screen backdrop-blur-sm text-white"
 		>
 			<div class="flex-1 flex justify-end">
-				<div class="flex flex-col gap-4 justify-center h-screen w-fit">
-					<h1 class="text-8xl tracking-wider drop-shadow-2xl font-bold text-white/90" style="text-shadow: 3px 3px hsla(180, 100%, 50%, 0.8), -3px -3px hsl(300, 100%, 50%, 0.8)">folo</h1>
-					<p class="text-2xl drop-shadow-2xl font-extrabold text-neutral-200">
+				<div class="flex flex-col gap-8 justify-center items-start">
+					<h1 class="text-8xl tracking-wider drop-shadow-2xl font-bold text-white" style="text-shadow: 3px 3px hsla(180, 100%, 50%, 0.8), -3px -3px hsl(300, 100%, 50%, 0.8)">folo</h1>
+					<p class="text-2xl drop-shadow-2xl font-extrabold text-neutral-200 before:block before:content-empty before:absolute before:-inset-1 before:-skew-1 before:-z-1 before:bg-violet-500/75">
 						Monitoring all your social media made <span class="underline decoration-wavy text-white">super</span> easy
 					</p>
 					<a href="https://play.google.com/store/apps/details?id=me.pavi2410.folo">
 						<img
 							src="/google-play-badge.png"
-							class="h-24 -m-4"
+							class="h-16"
 							alt="Google Play Badge"
 						/>
 					</a>
@@ -75,12 +75,12 @@ const fakeProfiles = Array(30)
 				<div class="flex scale-75">
 					<img
 						src="/folo_home.jpg"
-						class="max-h-screen rounded-2xl border-4 border-gray-900 drop-shadow-2xl"
+						class="max-h-screen rounded-2xl border-4 border-gray-700 drop-shadow-2xl"
 						alt="Folo app homescreen"
 					/>
 					<img
 						src="/folo_widgets.jpg"
-						class="max-h-screen rounded-2xl border-4 border-gray-900 drop-shadow-2xl -translate-x-1/4 scale-95 -z-10 hover:scale-100 hover:z-10 transition-all duration-300 ease-in-out"
+						class="max-h-screen rounded-2xl border-4 border-gray-700 drop-shadow-2xl -translate-x-1/4 scale-95 -z-10 hover:scale-100 hover:z-10 transition-all duration-300 ease-in-out"
 						alt="Folo widgets"
 					/>
 				</div>
