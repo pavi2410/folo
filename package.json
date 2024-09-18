@@ -1,0 +1,9 @@
+{
+  "name": "folo",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "landing",
+    "workers"
+  ]
+}
