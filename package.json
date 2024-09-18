@@ -5,5 +5,9 @@
     "backend",
     "landing",
     "workers"
-  ]
+  ],
+  "scripts": {
+    "start:server": "bun --filter=backend start",
+    "start:cronjob": "bun --filter=backend start:cronjob"
+  }
 }
