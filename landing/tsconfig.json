@@ -1,9 +1,11 @@
 {
   "extends": "astro/tsconfigs/strict",
-   "compilerOptions": {
+  "compilerOptions": {
     "types": [
       "unplugin-icons/types/astro",
       "@faker-js/faker/dist/types"
-    ]
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }

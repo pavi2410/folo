@@ -1,0 +1,348 @@
+---
+
+---
+
+<div class="absolute inset-0 overflow-hidden -z-10">
+    <div class="widgets-container">
+        {/* Instagram Widget */}
+        <div class="widget instagram-widget">
+            <div class="widget-header">
+                <div class="platform-icon instagram"></div>
+                <span>Instagram</span>
+            </div>
+            <div class="widget-content">
+                <div class="stat-row">
+                    <span class="stat-label">Followers</span>
+                    <span class="stat-value">12,853</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Following</span>
+                    <span class="stat-value">542</span>
+                </div>
+                <div class="stat-change positive">
+                    <span class="change-arrow">▲</span>
+                    <span class="change-value">+214 today</span>
+                </div>
+            </div>
+        </div>
+
+        {/* Twitter/X Widget */}
+        <div class="widget twitter-widget">
+            <div class="widget-header">
+                <div class="platform-icon twitter"></div>
+                <span>Twitter</span>
+            </div>
+            <div class="widget-content">
+                <div class="stat-row">
+                    <span class="stat-label">Followers</span>
+                    <span class="stat-value">4,321</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Tweets</span>
+                    <span class="stat-value">1,283</span>
+                </div>
+                <div class="stat-change positive">
+                    <span class="change-arrow">▲</span>
+                    <span class="change-value">+73 today</span>
+                </div>
+            </div>
+        </div>
+
+        {/* YouTube Widget */}
+        <div class="widget youtube-widget">
+            <div class="widget-header">
+                <div class="platform-icon youtube"></div>
+                <span>YouTube</span>
+            </div>
+            <div class="widget-content">
+                <div class="stat-row">
+                    <span class="stat-label">Subscribers</span>
+                    <span class="stat-value">76,492</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Videos</span>
+                    <span class="stat-value">128</span>
+                </div>
+                <div class="stat-change negative">
+                    <span class="change-arrow">▼</span>
+                    <span class="change-value">-12 today</span>
+                </div>
+            </div>
+        </div>
+
+        {/* TikTok Widget */}
+        <div class="widget tiktok-widget">
+            <div class="widget-header">
+                <div class="platform-icon tiktok"></div>
+                <span>TikTok</span>
+            </div>
+            <div class="widget-content">
+                <div class="stat-row">
+                    <span class="stat-label">Followers</span>
+                    <span class="stat-value">23,567</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Likes</span>
+                    <span class="stat-value">124K</span>
+                </div>
+                <div class="stat-change positive">
+                    <span class="change-arrow">▲</span>
+                    <span class="change-value">+834 today</span>
+                </div>
+            </div>
+        </div>
+
+        {/* Small Widget Icons */}
+        <div class="small-widget instagram-small"></div>
+        <div class="small-widget twitter-small"></div>
+        <div class="small-widget youtube-small"></div>
+        <div class="small-widget tiktok-small"></div>
+        <div class="small-widget facebook-small"></div>
+        <div class="small-widget linkedin-small"></div>
+    </div>
+    <div class="bg-gradient"></div>
+</div>
+
+<style>
+    .widgets-container {
+        position: absolute;
+        inset: -20% -10%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        opacity: 0.15;
+        filter: blur(0.5px);
+        z-index: -5;
+        transform: perspective(1000px) rotateX(10deg);
+    }
+
+    .widget {
+        background: rgba(255, 255, 255, 0.13);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 16px;
+        width: 230px;
+        height: 160px;
+        margin: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: white;
+        position: relative;
+        overflow: hidden;
+        animation: float 18s infinite ease-in-out;
+        transform: scale(0.9);
+    }
+
+    .widget-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        font-weight: 600;
+    }
+
+    .platform-icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        margin-right: 8px;
+    }
+
+    .instagram {
+        background: linear-gradient(
+            45deg,
+            #f09433 0%,
+            #e6683c 25%,
+            #dc2743 50%,
+            #cc2366 75%,
+            #bc1888 100%
+        );
+    }
+
+    .twitter {
+        background: #1da1f2;
+    }
+
+    .youtube {
+        background: #ff0000;
+    }
+
+    .tiktok {
+        background: #000;
+        position: relative;
+    }
+
+    .tiktok:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(90deg, #25f4ee, #fe2c55, #000000);
+        mix-blend-mode: lighten;
+    }
+
+    .stat-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .stat-label {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .stat-value {
+        font-weight: 600;
+    }
+
+    .stat-change {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        font-size: 14px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+    }
+
+    .positive {
+        color: #4ade80;
+    }
+
+    .negative {
+        color: #f87171;
+    }
+
+    .change-arrow {
+        margin-right: 4px;
+    }
+
+    .small-widget {
+        width: 80px;
+        height: 80px;
+        border-radius: 12px;
+        position: absolute;
+        animation: floatSmall 15s infinite ease-in-out;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .instagram-small {
+        background: linear-gradient(
+            45deg,
+            #f09433 0%,
+            #e6683c 25%,
+            #dc2743 50%,
+            #cc2366 75%,
+            #bc1888 100%
+        );
+        top: 15%;
+        left: 20%;
+        animation-delay: -2s;
+    }
+
+    .twitter-small {
+        background: #1da1f2;
+        top: 60%;
+        left: 10%;
+        animation-delay: -5s;
+    }
+
+    .youtube-small {
+        background: #ff0000;
+        top: 30%;
+        right: 15%;
+        animation-delay: -3s;
+    }
+
+    .tiktok-small {
+        background: linear-gradient(90deg, #25f4ee, #fe2c55, #000000);
+        bottom: 20%;
+        right: 20%;
+        animation-delay: -7s;
+    }
+
+    .facebook-small {
+        background: #1877f2;
+        bottom: 40%;
+        left: 30%;
+        animation-delay: -4s;
+    }
+
+    .linkedin-small {
+        background: #0077b5;
+        top: 50%;
+        right: 30%;
+        animation-delay: -6s;
+    }
+
+    .instagram-widget {
+        top: 10%;
+        left: 25%;
+        animation-delay: -3s;
+    }
+
+    .twitter-widget {
+        top: 30%;
+        right: 20%;
+        animation-delay: -6s;
+    }
+
+    .youtube-widget {
+        bottom: 15%;
+        left: 30%;
+        animation-delay: -9s;
+    }
+
+    .tiktok-widget {
+        bottom: 25%;
+        right: 15%;
+        animation-delay: -12s;
+    }
+
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0) translateX(0) scale(0.9);
+        }
+        25% {
+            transform: translateY(-25px) translateX(15px) scale(0.9);
+        }
+        50% {
+            transform: translateY(10px) translateX(-15px) scale(0.9);
+        }
+        75% {
+            transform: translateY(-15px) translateX(10px) scale(0.9);
+        }
+    }
+
+    @keyframes floatSmall {
+        0%,
+        100% {
+            transform: translateY(0) translateX(0);
+        }
+        25% {
+            transform: translateY(-15px) translateX(10px);
+        }
+        50% {
+            transform: translateY(10px) translateX(-10px);
+        }
+        75% {
+            transform: translateY(-5px) translateX(15px);
+        }
+    }
+
+    .bg-gradient {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            circle at center,
+            rgba(20, 4, 40, 0.1) 0%,
+            rgba(0, 0, 0, 0.95) 70%
+        );
+        z-index: -4;
+    }
+</style>

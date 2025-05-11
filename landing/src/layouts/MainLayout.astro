@@ -1,0 +1,26 @@
+---
+import '../styles/global.css';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.ico" sizes="any">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>folo</title>
+		<link rel="preconnect" href="https://rsms.me/">
+		<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+		<style>
+		:root {
+			font-family: Inter, sans-serif;
+			font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+		}
+		@supports (font-variation-settings: normal) {
+			:root { font-family: InterVariable, sans-serif; }
+		}
+		</style>
+	</head>
+    <slot />
+</html>
