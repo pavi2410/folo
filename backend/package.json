@@ -6,9 +6,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bun --env-file=.env server.js",
-    "start": "bun server.js",
-    "start:cronjob": "bun cronjob.js",
+    "dev": "node --env-file=.env server.js",
+    "start": "node server.js",
+    "start:cronjob": "node cronjob.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

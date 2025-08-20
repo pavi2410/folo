@@ -1,13 +1,13 @@
 {
   "name": "folo",
   "private": true,
-  "workspaces": [
-    "backend",
-    "landing",
-    "workers"
-  ],
   "scripts": {
-    "start:server": "bun --filter=backend start",
-    "start:cronjob": "bun --filter=backend start:cronjob"
+    "start:server": "pnpm --filter=backend start",
+    "start:cronjob": "pnpm --filter=backend start:cronjob",
+    "dev:backend": "pnpm --filter=backend dev",
+    "dev:landing": "pnpm --filter=folo-lp dev",
+    "dev:workers": "pnpm --filter=folo-backend dev",
+    "build:landing": "pnpm --filter=folo-lp build",
+    "deploy:workers": "pnpm --filter=folo-backend deploy"
   }
 }
