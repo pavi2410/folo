@@ -1,4 +1,17 @@
 name = "folo-workers"
 main = "src/index.ts"
 compatibility_date = "2025-08-15"
-node_compat = true
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "folo-db"
+database_id = "05f7a549-9035-48c6-a75e-a52fac3dc508"
+migrations_dir = "migrations"
+
+[triggers]
+crons = ["0 */6 * * *"]  # Run every 6 hours
+
+[observability]
+enabled = true
+head_sampling_rate = 1 # optional. default = 1.

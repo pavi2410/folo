@@ -21,7 +21,7 @@ export const PLATFORMS = {
 
 export type PlatformNames = keyof typeof PLATFORMS;
 
-export const platformNames = Object.keys(PLATFORMS);
+export const platformNames = Object.keys(PLATFORMS) as PlatformNames[];
 
 export async function fetchProfile(platform: PlatformNames, username: string): Promise<ProfileResult | null> {
 	const platformFetcher = PLATFORMS[platform].fetchProfile;
