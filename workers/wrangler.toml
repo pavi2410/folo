@@ -1,3 +1,4 @@
 name = "folo-workers"
 main = "src/index.ts"
-compatibility_date = "2023-06-26"
+compatibility_date = "2025-08-15"
+node_compat = true

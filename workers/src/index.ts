@@ -16,7 +16,6 @@ app.get(
 		z.object({
 			platform: z.enum(platformNames),
 			username: z.string(),
-			// metric: z.string(),
 		})
 	),
 	async (c) => {
